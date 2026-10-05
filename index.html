@@ -286,6 +286,31 @@
       margin-top: 2rem; padding-top: 1.15rem; border-top: 1px solid var(--border);
       text-align: center; color: var(--muted); font-size: 0.8rem;
     }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; margin-top: 1.25rem;
+    }
+    @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+    .price-panel {
+      background: var(--primary-soft); border: 1px solid #99f6e4;
+      border-radius: var(--radius); padding: 1.15rem 1.2rem;
+    }
+    .price-panel .amt {
+      font-size: 2rem; font-weight: 750; color: var(--heading);
+      letter-spacing: -0.03em; line-height: 1; margin: 0.25rem 0 0.15rem;
+    }
+    .price-panel .amt span {
+      display: block; font-size: 0.82rem; font-weight: 500; color: var(--muted);
+      margin-top: 0.3rem; letter-spacing: 0;
+    }
+    .price-panel ul { list-style: none; margin: 0.75rem 0 0; }
+    .price-panel li {
+      font-size: 0.86rem; color: var(--muted); padding: 0.28rem 0 0.28rem 1.15rem;
+      position: relative;
+    }
+    .price-panel li::before {
+      content: "✓"; position: absolute; left: 0; color: var(--primary); font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -301,6 +326,7 @@
       <div class="top-actions">
         <span class="meta-chip">Sample data · Not live</span>
         <span class="meta-chip">Monrovia, Liberia</span>
+        <a class="btn btn-secondary btn-sm" href="#about">About &amp; pricing</a>
         <a class="btn btn-secondary btn-sm" href="proposal.html">View proposal</a>
         <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book free demo</a>
       </div>
@@ -315,6 +341,35 @@
         <span><strong>$1,000</strong> one-time custom build · Payeconnect</span>
         <span>WhatsApp +231 888 916 127 · Free demo</span>
         <span>Sample data only · Not live SLFPP records</span>
+      </div>
+    </div>
+
+    
+    <div class="about-grid" id="about">
+      <div class="card">
+        <h3>About this offering</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin:0.35rem 0 0.75rem">
+          <strong style="color:var(--heading)">Payeconnect</strong> builds practical business systems for organizations that need clean daily operations — not bloated software. For <strong style="color:var(--heading)">Society For Less Fortunate People Project (SLFPP)</strong>, the need is clear: register people who walk in, keep a trustworthy loan track record per member, and know who should pay today before the day slips away.
+        </p>
+        <p style="color:var(--muted);font-size:0.9rem;margin:0">
+          This $1,000 assistant is a focused custom build for Lawrence and SLFPP staff: three modules that match real field work in Liberia (communities, LRD amounts, WhatsApp/SMS follow-up). The pages below are an interactive sample so you can judge fit before a free demo.
+        </p>
+      </div>
+      <div class="price-panel">
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--primary)">Pricing</div>
+        <div class="amt">$1,000<span>one-time custom build for SLFPP</span></div>
+        <ul>
+          <li>Incoming registration module</li>
+          <li>Loan track record (balances &amp; payments)</li>
+          <li>Payment-due / overdue / upcoming reminders</li>
+          <li>Staff operations dashboard</li>
+          <li>Fitted to Society For Less Fortunate People Project</li>
+          <li>Free live demo before you decide</li>
+        </ul>
+        <div style="margin-top:0.9rem;display:flex;flex-wrap:wrap;gap:0.45rem">
+          <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book free demo</a>
+          <a class="btn btn-secondary btn-sm" href="proposal.html">Full proposal</a>
+        </div>
       </div>
     </div>
 
