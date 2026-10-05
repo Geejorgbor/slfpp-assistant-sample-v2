@@ -3,210 +3,390 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SLFPP Assistant Proposal · Payeconnect</title>
+  <title>SLFPP Assistant · Proposal · Payeconnect</title>
+  <meta name="description" content="Proposal for a custom staff operations system for Society For Less Fortunate People Project (SLFPP), prepared by Payeconnect." />
+  <meta name="theme-color" content="#0b1626" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg:#f3f5f7; --surface:#fff; --border:#e2e6eb; --text:#1c2430; --muted:#5b6573;
-      --heading:#0b1f33; --primary:#0b6e6a; --primary-soft:#e8f5f4;
-      --font:"DM Sans","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+      --bg:#f6f7f9; --surface:#fff; --surface-2:#fafbfc; --border:#e6e9ee; --border-strong:#d3d8e0;
+      --text:#1d2635; --muted:#5f6b7c; --subtle:#8a94a3; --heading:#0b1424; --ink:#0b1626;
+      --primary:#0c7a6b; --primary-hover:#09685b; --primary-soft:#eaf6f3; --primary-line:#bfe3da; --ring:rgba(12,122,107,.22);
+      --shadow:0 1px 2px rgba(11,20,36,.04),0 2px 8px -2px rgba(11,20,36,.06);
+      --font:"Inter","DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
       --display:"Fraunces",Georgia,"Times New Roman",serif;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:15px;
-      background-image:linear-gradient(180deg,#eef2f5 0%,var(--bg) 160px)}
-    .sheet{max-width:760px;margin:0 auto;padding:2.25rem 1.25rem 3.25rem}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.45rem 1.5rem;margin-bottom:1rem;
-      box-shadow:0 1px 2px rgba(11,31,51,.04),0 8px 24px rgba(11,31,51,.05)}
-    .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:1.35rem}
-    .brand{display:flex;align-items:center;gap:.8rem}
-    .logo{width:38px;height:38px;border-radius:9px;background:var(--heading);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.7rem;letter-spacing:.04em}
-    .brand strong{display:block;font-size:.95rem;color:var(--heading)}
-    .brand span{font-size:.78rem;color:var(--muted)}
-    .meta{text-align:right;font-size:.82rem;color:var(--muted)}
-    .meta b{display:block;color:var(--heading);font-size:1rem}
-    .eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:.45rem}
-    h1{font-family:var(--display);font-size:1.7rem;letter-spacing:-.025em;color:var(--heading);margin-bottom:.55rem;line-height:1.22;font-weight:700}
-    .lead{color:var(--muted);font-size:1rem;margin-bottom:0;max-width:40rem;line-height:1.55}
-    h2{font-family:var(--display);font-size:1.12rem;color:var(--heading);margin-bottom:.55rem;font-weight:650}
-    p,li{color:var(--muted);font-size:.92rem}
-    ul{margin:.45rem 0 0 1.15rem}
-    li{margin:.35rem 0}
-    li strong{color:var(--text)}
-    .three{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.8rem}
-    @media(max-width:640px){.three{grid-template-columns:1fr}.meta{text-align:left}}
-    .pill{background:#f8fafb;border:1px solid var(--border);border-radius:10px;padding:1rem}
-    .pill .t{font-weight:700;font-size:.9rem;color:var(--heading);margin-bottom:.35rem}
-    .pill p{font-size:.82rem;margin:0;line-height:1.45}
-    .price{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;
-      background:var(--primary-soft);border:1px solid #b7e0dc;border-radius:0 0 12px 12px;padding:1.35rem 1.45rem;margin-bottom:1rem}
-    .price .amt{font-family:var(--display);font-size:2.35rem;font-weight:700;color:var(--heading);letter-spacing:-.03em;line-height:1}
-    .price .amt span{display:block;font-family:var(--font);font-size:.85rem;font-weight:500;color:var(--muted);margin-top:.4rem;letter-spacing:0}
-    .price ul{list-style:none;margin:0}
-    .price li{padding:.22rem 0 .22rem 1.15rem;position:relative;color:var(--muted);font-size:.88rem}
-    .price li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700}
-    .cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.9rem}
-    .btn{display:inline-flex;align-items:center;padding:.65rem 1.05rem;border-radius:8px;font-weight:650;font-size:.9rem;text-decoration:none}
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-secondary{background:#fff;color:var(--text);border:1px solid #cfd5dd}
-    .wa{margin-top:.9rem;font-size:.88rem;color:var(--muted)}
-    .wa strong{color:var(--heading)}
-    footer{margin-top:1.6rem;padding-top:1rem;border-top:1px solid var(--border);text-align:center;font-size:.8rem;color:var(--muted)}
-    footer a{color:var(--primary)}
-    .quote{border-left:3px solid var(--primary);padding-left:.95rem;margin-top:.8rem;color:var(--heading);font-style:italic;font-size:.95rem}
-    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;margin-top:.9rem}
-    @media(max-width:640px){.flow{grid-template-columns:1fr 1fr}}
-    .flow div{background:#f8fafb;border:1px solid var(--border);border-radius:10px;padding:.75rem;text-align:center}
-    .flow .n{font-size:.68rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.06em}
-    .flow .l{font-size:.8rem;font-weight:650;color:var(--heading);margin-top:.25rem}
-    .outcomes{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .9rem;margin-top:.7rem}
-    @media(max-width:560px){.outcomes{grid-template-columns:1fr}}
-    .outcomes div{font-size:.88rem;color:var(--muted);padding-left:1.2rem;position:relative}
-    .outcomes div::before{content:"→";position:absolute;left:0;color:var(--primary);font-weight:700}
-    .outcomes strong{color:var(--heading)}
-    .price-head{border-radius:12px 12px 0 0;margin-bottom:0;border-bottom:none;padding-bottom:.65rem}
+    html{scroll-behavior:smooth;overflow-x:clip;-webkit-text-size-adjust:100%}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01"}
+    a{color:var(--primary)}
+    :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:6px}
+    ::selection{background:#cdeee6}
+
+    /* Top nav */
+    .nav{position:sticky;top:0;z-index:20;background:rgba(11,22,38,.92);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-in{max-width:1120px;margin:0 auto;padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+    .logo{width:32px;height:32px;border-radius:9px;flex-shrink:0;background:linear-gradient(145deg,#12917f,#0a5f54);color:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+    .logo svg{width:17px;height:17px}
+    .brand strong{display:block;color:#fff;font-size:.9rem;font-weight:650;letter-spacing:-.01em;line-height:1.2}
+    .brand span{display:block;color:#8796ab;font-size:.72rem;line-height:1.3}
+    .nav-actions{display:flex;gap:.45rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.62rem 1.05rem;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;border:1px solid transparent;line-height:1.2;white-space:nowrap;transition:background .15s,border-color .15s,box-shadow .15s}
+    .btn:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ring)}
+    .btn-primary{background:var(--primary);color:#fff;box-shadow:0 1px 2px rgba(11,20,36,.14),inset 0 1px 0 rgba(255,255,255,.12)}
+    .btn-primary:hover{background:var(--primary-hover)}
+    .btn-secondary{background:#fff;color:var(--text);border-color:var(--border-strong);box-shadow:0 1px 2px rgba(11,20,36,.05)}
+    .btn-secondary:hover{background:var(--surface-2);border-color:#bcc3cd}
+    .btn-dark{background:rgba(255,255,255,.06);color:#e8edf3;border-color:rgba(255,255,255,.14)}
+    .btn-dark:hover{background:rgba(255,255,255,.1)}
+    .btn-sm{padding:.42rem .75rem;font-size:.8rem;border-radius:7px}
+
+    /* Cover */
+    .cover{background:var(--ink);color:#c7d1dd;position:relative;overflow:hidden;border-bottom:1px solid #0f1d31}
+    .cover::before{content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(700px 360px at 90% 0%,rgba(18,165,141,.22),transparent 70%),
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px,
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/32px 32px;
+      mask-image:linear-gradient(90deg,transparent 0%,#000 60%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 60%)}
+    .cover-in{position:relative;max-width:1120px;margin:0 auto;padding:4rem 1.5rem 3.5rem}
+    .eyebrow{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--primary)}
+    .cover .eyebrow{color:#5fd8c1;margin-bottom:1rem}
+    .cover h1{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.1;letter-spacing:-.025em;color:#fff;max-width:46rem;margin-bottom:1.1rem}
+    .cover h1 em{font-style:italic;color:#9fe7d8}
+    .cover .lead{font-size:1.05rem;color:#a9b6c6;max-width:42rem;line-height:1.65}
+    .cover-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:2.5rem;border-top:1px solid rgba(255,255,255,.1);padding-top:1.35rem;max-width:860px}
+    .cover-meta div{padding-right:1rem}
+    .cover-meta small{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:#6d7d93;font-weight:600;margin-bottom:.25rem}
+    .cover-meta b{color:#e8edf3;font-weight:550;font-size:.9rem}
+    .cover .cta{margin-top:2rem;display:flex;gap:.6rem;flex-wrap:wrap}
+
+    /* Layout */
+    .layout{max-width:1120px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:210px minmax(0,1fr);gap:3rem}
+    .toc{position:sticky;top:5rem;align-self:start;font-size:.84rem}
+    .toc .eyebrow{color:var(--subtle);margin-bottom:.75rem}
+    .toc ol{list-style:none;border-left:1px solid var(--border)}
+    .toc ol a{display:flex;gap:.6rem;padding:.38rem 0 .38rem .9rem;color:var(--muted);text-decoration:none;margin-left:-1px;border-left:1px solid transparent;transition:color .15s,border-color .15s}
+    .toc ol a span{color:var(--subtle);font-variant-numeric:tabular-nums;font-size:.76rem;padding-top:.08rem}
+    .toc ol a:hover{color:var(--heading);border-left-color:var(--primary)}
+    .toc .toc-cta{margin-top:1.5rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);font-size:.8rem;color:var(--muted);line-height:1.5}
+    .toc .toc-cta strong{display:block;color:var(--heading);font-size:.85rem;margin-bottom:.25rem}
+    .toc .toc-cta .btn{margin-top:.75rem;width:100%}
+
+    section.sec{padding:0 0 2.75rem;margin-bottom:2.75rem;border-bottom:1px solid var(--border);scroll-margin-top:5rem}
+    section.sec:last-of-type{border-bottom:none;margin-bottom:0}
+    .sec-num{font-size:.72rem;font-weight:600;color:var(--primary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;font-variant-numeric:tabular-nums}
+    h2{font-family:var(--display);font-weight:500;font-size:1.75rem;letter-spacing:-.02em;color:var(--heading);line-height:1.2;margin-bottom:.85rem;max-width:40rem}
+    .sec > p{color:var(--muted);font-size:.98rem;max-width:44rem}
+    .sec > p + p{margin-top:.75rem}
+    p strong,li strong{color:var(--heading);font-weight:600}
+
+    .quote{margin:1.5rem 0 0;padding:1.25rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:0 10px 10px 0;font-family:var(--display);font-size:1.12rem;font-style:italic;color:var(--heading);line-height:1.5;box-shadow:var(--shadow);max-width:44rem}
+
+    .flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:1.75rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+    .flow > div{padding:1.1rem 1.15rem;border-right:1px solid var(--border);position:relative}
+    .flow > div:last-child{border-right:none}
+    .flow .n{font-size:.68rem;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:.1em}
+    .flow .l{font-size:.92rem;font-weight:600;color:var(--heading);margin-top:.3rem}
+    .flow .d{font-size:.8rem;color:var(--muted);margin-top:.2rem;line-height:1.45}
+
+    .grid{display:grid;gap:1rem;margin-top:1.5rem}
+    .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .feat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.3rem;box-shadow:var(--shadow)}
+    .feat .ic{width:34px;height:34px;border-radius:9px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;margin-bottom:.9rem;border:1px solid var(--primary-line)}
+    .feat .ic svg{width:17px;height:17px}
+    .feat .t{font-weight:600;font-size:.98rem;color:var(--heading);margin-bottom:.35rem;letter-spacing:-.01em}
+    .feat p{font-size:.86rem;color:var(--muted);line-height:1.55}
+
+    .outcomes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+    .outcomes div{padding:1.1rem 1.2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:.86rem;color:var(--muted);line-height:1.5}
+    .outcomes div:nth-child(3n){border-right:none}
+    .outcomes div:nth-last-child(-n+3){border-bottom:none}
+    .outcomes strong{display:block;color:var(--heading);font-size:.92rem;margin-bottom:.2rem}
+
+    .steps{list-style:none;margin-top:1.5rem;counter-reset:s;display:grid;gap:.6rem;max-width:44rem}
+    .steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:.9rem;align-items:start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1.05rem;font-size:.9rem;color:var(--muted);box-shadow:var(--shadow)}
+    .steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-size:.78rem;font-weight:600;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+
+    .scope{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+    .scope-head{padding:1.6rem 1.6rem;background:var(--ink);color:#a9b6c6;position:relative;overflow:hidden}
+    .scope-head::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(18,165,141,.3),transparent 70%)}
+    .scope-head .eyebrow{color:#5fd8c1;margin-bottom:.6rem}
+    .scope-head h3{font-family:var(--display);font-weight:500;font-size:1.5rem;color:#fff;letter-spacing:-.02em;line-height:1.2;margin-bottom:.6rem}
+    .scope-head p{font-size:.88rem;line-height:1.6;position:relative}
+    .scope-head .quote-note{margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);font-size:.84rem;color:#c7d1dd;position:relative}
+    .scope-head .quote-note b{color:#fff;font-weight:600}
+    .scope ul{list-style:none;padding:1.35rem 1.6rem;display:grid;gap:.15rem;align-content:start}
+    .scope li{font-size:.88rem;color:var(--text);padding:.38rem 0 .38rem 1.75rem;position:relative;border-bottom:1px solid #f0f2f5}
+    .scope li:last-child{border-bottom:none}
+    .scope li::before{content:"";position:absolute;left:0;top:.6rem;width:16px;height:16px;border-radius:50%;background:var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 24 24' fill='none' stroke='%230c7a6b' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center}
+
+    .engage{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+    .engage > div{border-top:2px solid var(--primary);padding-top:.85rem}
+    .engage .n{font-size:.7rem;font-weight:600;color:var(--subtle);letter-spacing:.1em;text-transform:uppercase}
+    .engage .l{font-weight:600;color:var(--heading);margin:.2rem 0 .25rem;font-size:.95rem}
+    .engage p{font-size:.84rem;color:var(--muted);line-height:1.5}
+
+    .final{margin-top:1.75rem;background:var(--ink);border-radius:14px;padding:2rem 2rem;color:#a9b6c6;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem;position:relative;overflow:hidden}
+    .final::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 220px at 100% 0%,rgba(18,165,141,.25),transparent 70%);pointer-events:none}
+    .final > *{position:relative}
+    .final h3{font-family:var(--display);font-weight:500;color:#fff;font-size:1.45rem;letter-spacing:-.02em;margin-bottom:.3rem}
+    .final p{font-size:.9rem;max-width:34rem}
+    .final p strong{color:#fff}
+    .final .cta{display:flex;gap:.55rem;flex-wrap:wrap}
+
+    footer{border-top:1px solid var(--border);background:var(--surface)}
+    .foot-in{max-width:1120px;margin:0 auto;padding:1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;font-size:.8rem;color:var(--subtle)}
+    .foot-in a{color:var(--muted);text-decoration:none;font-weight:500}
+    .foot-in a:hover{color:var(--primary)}
+
+    @media (max-width:960px){
+      .layout{grid-template-columns:1fr;gap:0;padding-top:2rem}
+      .toc{display:none}
+      .g3,.outcomes{grid-template-columns:1fr 1fr}
+      .outcomes div:nth-child(3n){border-right:1px solid var(--border)}
+      .outcomes div:nth-child(2n){border-right:none}
+      .outcomes div:nth-last-child(-n+3){border-bottom:1px solid var(--border)}
+      .outcomes div:nth-last-child(-n+1){border-bottom:none}
+      .engage{grid-template-columns:1fr 1fr}
+      .scope{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      body{font-size:14.5px}
+      .nav-actions .hide-sm{display:none}
+      .nav-actions{flex-wrap:nowrap}
+      .nav-in{padding:.6rem 1rem}
+      .brand strong{white-space:nowrap}
+      .brand span{display:none}
+      .cover-in{padding:2.75rem 1.25rem 2.5rem}
+      .cover-meta{grid-template-columns:1fr 1fr;gap:1rem 0}
+      .layout{padding-left:1.25rem;padding-right:1.25rem}
+      h2{font-size:1.45rem}
+      .flow{grid-template-columns:1fr 1fr}
+      .flow > div:nth-child(2){border-right:none}
+      .flow > div:nth-child(-n+2){border-bottom:1px solid var(--border)}
+      .g3,.g2,.outcomes,.engage{grid-template-columns:1fr}
+      .outcomes div{border-right:none !important;border-bottom:1px solid var(--border) !important}
+      .outcomes div:last-child{border-bottom:none !important}
+      .final{padding:1.5rem 1.25rem}
+    }
+    @media print{
+      .nav,.toc,.cta,.nav-actions{display:none !important}
+      .layout{display:block;padding:1.5rem 0}
+      body{background:#fff}
+      .cover,.scope-head,.final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      section.sec{break-inside:avoid-page}
+    }
   </style>
 </head>
 <body>
-  <div class="sheet">
-    <div class="top">
-      <div class="brand">
-        <div class="logo">SL</div>
-        <div>
-          <strong>SLFPP Assistant</strong>
-          <span>Society For Less Fortunate People Project</span>
-        </div>
-      </div>
-      <div class="meta">Prepared by <b>Payeconnect</b>For Lawrence · Confidential sample</div>
-    </div>
-
-    <div class="card">
-      <p class="eyebrow">Custom operations system · Payeconnect</p>
-      <h1>Give SLFPP a system worthy of the trust people place in the program.</h1>
-      <p class="lead">When registration, loan history, and installment days live in notebooks or chat threads, payments are missed and credibility suffers. This proposal offers a focused staff assistant — built once for Society For Less Fortunate People Project — so Lawrence’s team always knows who came in, who owes what, and who should pay today.</p>
-    </div>
-
-    <div class="card">
-      <h2>About the business behind this offer</h2>
-      <p><strong style="color:var(--heading)">Payeconnect</strong> designs practical systems for organizations that need reliable day-to-day operations — not bloated platforms. This proposal is prepared for <strong style="color:var(--heading)">Lawrence</strong> and <strong style="color:var(--heading)">Society For Less Fortunate People Project (SLFPP)</strong>. This is a full custom build around the modules that match real field work. Pricing is quoted separately on WhatsApp after you review the sample. A free demo is available before any commitment.</p>
-    </div>
-
-    <div class="card">
-      <h2>1. Built around how SLFPP actually works</h2>
-      <p>People walk into the program from communities across Monrovia and beyond. Field officers verify them. Loans support livelihoods such as market stalls, catering, agriculture inputs, and trades. Installments fall on set dates. Staff need one credible screen — not scattered paper.</p>
-      <p class="quote">“Mary Kollie should pay today” should appear before anyone has to remember it. A new intake should never leave without a record. A loan’s full payment history should open in seconds.</p>
-      <div class="flow">
-        <div><div class="n">Step 1</div><div class="l">Person walks in</div></div>
-        <div><div class="n">Step 2</div><div class="l">Register &amp; verify</div></div>
-        <div><div class="n">Step 3</div><div class="l">Loan + payments</div></div>
-        <div><div class="n">Step 4</div><div class="l">Remind who pays</div></div>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="brand" href="index.html">
+        <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.6A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.8c0 6-7.5 10.6-7.5 10.6z"/></svg></div>
+        <div><strong>SLFPP Assistant</strong><span>Proposal · Prepared by Payeconnect</span></div>
+      </a>
+      <div class="nav-actions">
+        <a class="btn btn-dark btn-sm hide-sm" href="download.html">Download hub</a>
+        <a class="btn btn-dark btn-sm hide-sm" href="index.html">Open demo</a>
+        <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book free demo</a>
       </div>
     </div>
+  </header>
 
-    <div class="card">
-      <h2>2. Three modules — complete enough for daily operations</h2>
-      <div class="three">
-        <div class="pill">
-          <div class="t">Incoming registration</div>
-          <p>Full name, phone, community, ID, reason for coming in, livelihood, next of kin, preferred WhatsApp/SMS channel, field officer, referral source, and intake status through loan screening.</p>
-        </div>
-        <div class="pill">
-          <div class="t">Loan track record</div>
-          <p>Per member: every loan, purpose, principal and balance in LRD, percent paid, open date, status, and a dated timeline of disbursements and installments — including closed loans.</p>
-        </div>
-        <div class="pill">
-          <div class="t">Payment-due reminders</div>
-          <p>Due today, overdue, and upcoming this week — with amount, loan ID, and channel. Queue WhatsApp or SMS, then mark paid when cash or mobile money lands.</p>
-        </div>
+  <div class="cover">
+    <div class="cover-in">
+      <div class="eyebrow">Proposal · Custom operations system</div>
+      <h1>Give SLFPP a system worthy of the <em>trust</em> people place in the program.</h1>
+      <p class="lead">When registration, loan history and installment days live in notebooks or chat threads, payments are missed and credibility suffers. This proposal offers a focused staff assistant — built once for Society For Less Fortunate People Project — so Lawrence’s team always knows who came in, who owes what, and who should pay today.</p>
+      <div class="cover-meta">
+        <div><small>Prepared for</small><b>Lawrence · SLFPP</b></div>
+        <div><small>Prepared by</small><b>Payeconnect</b></div>
+        <div><small>Location</small><b>Monrovia, Liberia</b></div>
+        <div><small>Status</small><b>Confidential sample</b></div>
       </div>
-    </div>
-
-    <div class="card">
-      <h2>3. Built-in staff controls &amp; reporting</h2>
-      <div class="three" style="grid-template-columns:repeat(2,1fr)">
-        <div class="pill">
-          <div class="t">Staff login &amp; roles</div>
-          <p>Each staff member signs in. <strong>Admin</strong> sees reports, settings and loan disbursement; <strong>Field Officers</strong> focus on registration, member profiles and payment reminders.</p>
-        </div>
-        <div class="pill">
-          <div class="t">Member profiles</div>
-          <p>One click opens the full person: identity, registration details, every loan, every payment, next due, and preferred WhatsApp/SMS reminder channel.</p>
-        </div>
-        <div class="pill">
-          <div class="t">Disburse loan + schedule</div>
-          <p>Choose member, principal in LRD, term in months and purpose — the system builds the installment schedule and feeds reminders automatically.</p>
-        </div>
-        <div class="pill">
-          <div class="t">Printable reports &amp; CSV</div>
-          <p>Collection summary by community, due list and new intakes — print for the monthly meeting or export CSV for Excel and partners.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>4. What changes for SLFPP</h2>
-      <div class="outcomes">
-        <div><strong>Fewer missed payments</strong> — due-today and overdue are visible every morning</div>
-        <div><strong>Cleaner intakes</strong> — every walk-in gets a complete registration record</div>
-        <div><strong>Faster follow-up</strong> — loan history opens without digging through paper</div>
-        <div><strong>Clearer supervision</strong> — dashboard shows members, loans, due today, collections</div>
-        <div><strong>Channel-ready outreach</strong> — preferred WhatsApp/SMS stored at registration</div>
-        <div><strong>Controlled access</strong> — Admin and Field Officer roles, every action tied to a staff account</div>
-        <div><strong>Board-ready reporting</strong> — print or export collections, due lists and intakes in seconds</div>
-        <div><strong>Disciplined lending</strong> — every new loan gets a clear repayment schedule from day one</div>
-        <div><strong>Credible review</strong> — Liberia-flavored sample data so Lawrence can judge fit now</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>5. How staff use reminders each morning</h2>
-      <ul>
-        <li><strong>Open Reminders</strong> — see the day’s due list (example: Mary Kollie, LRD 25,000, LN-1042, WhatsApp).</li>
-        <li><strong>Act on overdue first</strong> — members who missed yesterday stay visible until cleared.</li>
-        <li><strong>Queue outreach</strong> — send reminder on the member’s preferred channel.</li>
-        <li><strong>Mark paid</strong> — when cash or mobile money arrives, update the record.</li>
-        <li><strong>Check upcoming</strong> — plan mid-week outreach before installment dates hit.</li>
-      </ul>
-    </div>
-
-    <div class="card price-head">
-      <h2>What's included in the system</h2>
-      <p>Everything staff need for daily SLFPP operations — quote provided separately after you review.</p>
-    </div>
-    <div class="price">
-      <div>
-        <div class="eyebrow">Custom build for SLFPP</div>
-        <div class="amt" style="font-size:1.55rem">Full operations system<span>Society For Less Fortunate People Project · Payeconnect</span></div>
-      </div>
-      <ul>
-        <li>Incoming registration module</li>
-        <li>Loan history, balances &amp; payment timeline</li>
-        <li>Payment-due / overdue / upcoming reminders</li>
-        <li>Staff operations dashboard &amp; collection view</li>
-        <li>Staff login with Admin &amp; Field Officer roles</li>
-        <li>Member profiles · loan disbursement &amp; schedules</li>
-        <li>Printable reports &amp; CSV export</li>
-        <li>Fitted to SLFPP · free demo before you decide</li>
-        <li>Quote on WhatsApp after sample review</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h2>6. Next step</h2>
-      <p>Open the interactive sample, sign in as Admin (then as Field Officer), and walk Dashboard → Registration → Loan Track Record → Reminders → Disburse Loan → Reports → Settings. Click any member name to open the full profile. When ready, message Payeconnect for a free live demo. Sample data is illustrative only — not live SLFPP records.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="index.html">Open the sample demo</a>
-        <a class="btn btn-secondary" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">WhatsApp · Book free demo</a>
+        <a class="btn btn-primary" href="index.html">Open the interactive demo</a>
+        <a class="btn btn-dark" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">WhatsApp · +231 888 916 127</a>
       </div>
-      <p class="wa">WhatsApp: <strong>+231 888 916 127</strong> · Payeconnect</p>
     </div>
-
-    <footer>
-      Sample for review · Payeconnect · Not live data<br />
-      <a href="index.html">← Back to demo</a>
-    </footer>
   </div>
+
+  <div class="layout">
+    <aside class="toc" aria-label="Contents">
+      <div class="eyebrow">Contents</div>
+      <ol>
+        <li><a href="#about"><span>01</span>About Payeconnect</a></li>
+        <li><a href="#context"><span>02</span>How SLFPP works</a></li>
+        <li><a href="#modules"><span>03</span>Core modules</a></li>
+        <li><a href="#controls"><span>04</span>Controls &amp; reporting</a></li>
+        <li><a href="#outcomes"><span>05</span>What changes</a></li>
+        <li><a href="#routine"><span>06</span>Daily routine</a></li>
+        <li><a href="#scope"><span>07</span>What’s included</a></li>
+        <li><a href="#next"><span>08</span>Next step</a></li>
+      </ol>
+      <div class="toc-cta">
+        <strong>Free live demo</strong>
+        Quote provided on WhatsApp after you review the sample.
+        <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book on WhatsApp</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="sec" id="about">
+        <div class="sec-num">01 · About</div>
+        <h2>The business behind this offer</h2>
+        <p><strong>Payeconnect</strong> designs practical systems for organizations that need reliable day-to-day operations — not bloated platforms. This proposal is prepared for <strong>Lawrence</strong> and <strong>Society For Less Fortunate People Project (SLFPP)</strong>.</p>
+        <p>This is a full custom build around the modules that match real field work. Pricing is quoted separately on WhatsApp after you review the sample, and a free demo is available before any commitment.</p>
+      </section>
+
+      <section class="sec" id="context">
+        <div class="sec-num">02 · Context</div>
+        <h2>Built around how SLFPP actually works</h2>
+        <p>People walk into the program from communities across Monrovia and beyond. Field officers verify them. Loans support livelihoods such as market stalls, catering, agriculture inputs and trades. Installments fall on set dates. Staff need one credible screen — not scattered paper.</p>
+        <p class="quote">“Mary Kollie should pay today” should appear before anyone has to remember it. A new intake should never leave without a record. A loan’s full payment history should open in seconds.</p>
+        <div class="flow">
+          <div><div class="n">Step 1</div><div class="l">Person walks in</div><div class="d">From Red Light, Sinkor, Paynesville and more</div></div>
+          <div><div class="n">Step 2</div><div class="l">Register &amp; verify</div><div class="d">Identity, livelihood, channel, officer</div></div>
+          <div><div class="n">Step 3</div><div class="l">Loan + payments</div><div class="d">Disburse with a clear schedule in LRD</div></div>
+          <div><div class="n">Step 4</div><div class="l">Remind who pays</div><div class="d">WhatsApp or SMS before money is missed</div></div>
+        </div>
+      </section>
+
+      <section class="sec" id="modules">
+        <div class="sec-num">03 · Core modules</div>
+        <h2>Three modules — complete enough for daily operations</h2>
+        <div class="grid g3">
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div>
+            <div class="t">Incoming registration</div>
+            <p>Full name, phone, community, ID, reason for coming in, livelihood, next of kin, preferred WhatsApp/SMS channel, field officer, referral source, and intake status through loan screening.</p>
+          </div>
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+            <div class="t">Loan track record</div>
+            <p>Per member: every loan, purpose, principal and balance in LRD, percent paid, open date, status, and a dated timeline of disbursements and installments — including closed loans.</p>
+          </div>
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+            <div class="t">Payment-due reminders</div>
+            <p>Due today, overdue, and upcoming this week — with amount, loan ID, and channel. Queue WhatsApp or SMS, then mark paid when cash or mobile money lands.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="controls">
+        <div class="sec-num">04 · Controls &amp; reporting</div>
+        <h2>Built-in staff controls and board-ready reporting</h2>
+        <div class="grid g2">
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="t">Staff login &amp; roles</div>
+            <p>Each staff member signs in. <strong>Admin</strong> sees reports, settings and loan disbursement; <strong>Field Officers</strong> focus on registration, member profiles and payment reminders.</p>
+          </div>
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+            <div class="t">Member profiles</div>
+            <p>One click opens the full person: identity, registration details, every loan, every payment, next due, and preferred WhatsApp/SMS reminder channel.</p>
+          </div>
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+            <div class="t">Disburse loan + schedule</div>
+            <p>Choose member, principal in LRD, term in months and purpose — the system builds the installment schedule and feeds reminders automatically.</p>
+          </div>
+          <div class="feat">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div>
+            <div class="t">Printable reports &amp; CSV</div>
+            <p>Collection summary by community, due list and new intakes — print for the monthly meeting or export CSV for Excel and partners.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="outcomes">
+        <div class="sec-num">05 · Outcomes</div>
+        <h2>What changes for SLFPP</h2>
+        <div class="outcomes">
+          <div><strong>Fewer missed payments</strong>Due-today and overdue are visible every morning</div>
+          <div><strong>Cleaner intakes</strong>Every walk-in gets a complete registration record</div>
+          <div><strong>Faster follow-up</strong>Loan history opens without digging through paper</div>
+          <div><strong>Clearer supervision</strong>Dashboard shows members, loans, due today, collections</div>
+          <div><strong>Channel-ready outreach</strong>Preferred WhatsApp/SMS stored at registration</div>
+          <div><strong>Controlled access</strong>Admin and Field Officer roles, every action tied to a staff account</div>
+          <div><strong>Board-ready reporting</strong>Print or export collections, due lists and intakes in seconds</div>
+          <div><strong>Disciplined lending</strong>Every new loan gets a clear repayment schedule from day one</div>
+          <div><strong>Credible review</strong>Liberia-flavored sample data so Lawrence can judge fit now</div>
+        </div>
+      </section>
+
+      <section class="sec" id="routine">
+        <div class="sec-num">06 · Daily routine</div>
+        <h2>How staff use reminders each morning</h2>
+        <ol class="steps">
+          <li><div><strong>Open Reminders</strong> — see the day’s due list (example: Mary Kollie, LRD 25,000, LN-1042, WhatsApp).</div></li>
+          <li><div><strong>Act on overdue first</strong> — members who missed yesterday stay visible until cleared.</div></li>
+          <li><div><strong>Queue outreach</strong> — send reminder on the member’s preferred channel.</div></li>
+          <li><div><strong>Mark paid</strong> — when cash or mobile money arrives, update the record.</div></li>
+          <li><div><strong>Check upcoming</strong> — plan mid-week outreach before installment dates hit.</div></li>
+        </ol>
+      </section>
+
+      <section class="sec" id="scope">
+        <div class="sec-num">07 · Scope</div>
+        <h2>What’s included in the system</h2>
+        <p>Everything staff need for daily SLFPP operations — quote provided separately after you review.</p>
+        <div class="scope">
+          <div class="scope-head">
+            <div class="eyebrow">Custom build for SLFPP</div>
+            <h3>Full operations system</h3>
+            <p>Society For Less Fortunate People Project · Payeconnect. Fitted to SLFPP’s communities, LRD amounts and WhatsApp/SMS follow-up.</p>
+            <div class="quote-note"><b>Quote on WhatsApp</b> after sample review · free demo before you decide.</div>
+          </div>
+          <ul>
+            <li>Incoming registration module</li>
+            <li>Loan history, balances &amp; payment timeline</li>
+            <li>Payment-due / overdue / upcoming reminders</li>
+            <li>Staff operations dashboard &amp; collection view</li>
+            <li>Staff login with Admin &amp; Field Officer roles</li>
+            <li>Member profiles · loan disbursement &amp; schedules</li>
+            <li>Printable reports &amp; CSV export</li>
+            <li>Fitted to SLFPP · free demo before you decide</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="next">
+        <div class="sec-num">08 · Next step</div>
+        <h2>From sample to live system</h2>
+        <p>Open the interactive sample, sign in as Admin (then as Field Officer), and walk Dashboard → Registration → Loan Track Record → Reminders → Disburse Loan → Reports → Settings. Click any member name to open the full profile. Sample data is illustrative only — not live SLFPP records.</p>
+        <div class="engage">
+          <div><div class="n">Stage 1</div><div class="l">Review the sample</div><p>Walk every tab as Admin and as Field Officer.</p></div>
+          <div><div class="n">Stage 2</div><div class="l">Free live demo</div><p>Payeconnect walks your team through real workflows.</p></div>
+          <div><div class="n">Stage 3</div><div class="l">Fit to SLFPP</div><p>Communities, loan policy, staff accounts and reminder rules.</p></div>
+          <div><div class="n">Stage 4</div><div class="l">Go live &amp; train</div><p>Staff trained on the morning routine and reports.</p></div>
+        </div>
+        <div class="final">
+          <div>
+            <h3>Ready for a free live demo?</h3>
+            <p>Message Payeconnect on WhatsApp <strong>+231 888 916 127</strong>. Quote provided after you review the sample.</p>
+          </div>
+          <div class="cta">
+            <a class="btn btn-dark" href="index.html">Open the sample demo</a>
+            <a class="btn btn-primary" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">WhatsApp · Book free demo</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="foot-in">
+      <span>Sample for review · Payeconnect · Not live data</span>
+      <span><a href="index.html">← Back to demo</a> · <a href="download.html">Download hub</a></span>
+    </div>
+  </footer>
 </body>
 </html>
