@@ -12,7 +12,7 @@
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.55;font-size:15px}
-    .sheet{max-width:760px;margin:0 auto;padding:2rem 1.25rem 3rem}
+    .sheet{max-width:780px;margin:0 auto;padding:2rem 1.25rem 3rem}
     .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.35rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 2px rgba(15,23,42,.06)}
     .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:1.25rem}
     .brand{display:flex;align-items:center;gap:.75rem}
@@ -23,23 +23,23 @@
     .meta b{display:block;color:var(--heading);font-size:1rem}
     .eyebrow{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:.4rem}
     h1{font-size:1.45rem;letter-spacing:-.02em;color:var(--heading);margin-bottom:.5rem;line-height:1.25}
-    .lead{color:var(--muted);font-size:.98rem;margin-bottom:1.25rem;max-width:40rem}
-    h2{font-size:1rem;color:var(--heading);margin-bottom:.55rem}
+    .lead{color:var(--muted);font-size:.98rem;margin-bottom:0;max-width:42rem}
+    h2{font-size:1.02rem;color:var(--heading);margin-bottom:.55rem}
     p,li{color:var(--muted);font-size:.92rem}
-    ul{margin:.4rem 0 0 1.15rem}
-    li{margin:.3rem 0}
+    ul{margin:.45rem 0 0 1.15rem}
+    li{margin:.35rem 0}
     li strong{color:var(--text)}
     .three{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-top:.75rem}
     @media(max-width:640px){.three{grid-template-columns:1fr}.meta{text-align:left}}
-    .pill{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.9rem}
-    .pill .t{font-weight:700;font-size:.88rem;color:var(--heading);margin-bottom:.3rem}
-    .pill p{font-size:.82rem;margin:0}
+    .pill{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.95rem}
+    .pill .t{font-weight:700;font-size:.88rem;color:var(--heading);margin-bottom:.35rem}
+    .pill p{font-size:.82rem;margin:0;line-height:1.45}
     .price{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;
       background:var(--primary-soft);border:1px solid #99f6e4;border-radius:10px;padding:1.25rem 1.35rem;margin-bottom:1rem}
     .price .amt{font-size:2.2rem;font-weight:750;color:var(--heading);letter-spacing:-.03em;line-height:1}
     .price .amt span{display:block;font-size:.85rem;font-weight:500;color:var(--muted);margin-top:.35rem}
     .price ul{list-style:none;margin:0}
-    .price li{padding:.2rem 0 .2rem 1.15rem;position:relative;color:var(--muted);font-size:.88rem}
+    .price li{padding:.22rem 0 .22rem 1.15rem;position:relative;color:var(--muted);font-size:.88rem}
     .price li::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:700}
     .cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.85rem}
     .btn{display:inline-flex;align-items:center;padding:.6rem 1rem;border-radius:8px;font-weight:650;font-size:.9rem;text-decoration:none}
@@ -55,6 +55,11 @@
     .flow div{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.7rem;text-align:center}
     .flow .n{font-size:.68rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.05em}
     .flow .l{font-size:.8rem;font-weight:650;color:var(--heading);margin-top:.2rem}
+    .outcomes{display:grid;grid-template-columns:1fr 1fr;gap:.55rem .9rem;margin-top:.7rem}
+    @media(max-width:560px){.outcomes{grid-template-columns:1fr}}
+    .outcomes div{font-size:.88rem;color:var(--muted);padding-left:1.2rem;position:relative}
+    .outcomes div::before{content:"→";position:absolute;left:0;color:var(--primary);font-weight:700}
+    .outcomes strong{color:var(--heading)}
   </style>
 </head>
 <body>
@@ -71,15 +76,15 @@
     </div>
 
     <div class="card">
-      <p class="eyebrow">Custom system offer</p>
-      <h1>One place for who comes in, who owes what, and who should pay today.</h1>
-      <p class="lead">A focused staff assistant for SLFPP — incoming registration, loan track records, and payment-due reminders — offered as a <strong style="color:var(--heading)">$1,000</strong> one-time build. Try the interactive sample, then book a free demo.</p>
+      <p class="eyebrow">Custom system offer · $1,000 one-time build</p>
+      <h1>Give SLFPP staff one reliable system for who comes in, who owes what, and who must pay today.</h1>
+      <p class="lead">Society For Less Fortunate People Project serves people who need structured support — including small livelihood loans. When registration, loan history, and installment days live in notebooks or chat threads, money is missed and trust erodes. This assistant puts the three workflows staff rely on every day into one clear place.</p>
     </div>
 
     <div class="card">
-      <h2>1. The problem</h2>
-      <p>When people walk in, loans move, and installment days arrive, staff need one clear place to look — not notebooks, chats, or memory.</p>
-      <p class="quote">“Mary should pay today” should never be a surprise. New intakes should never go unregistered. Each member’s loan history should open in seconds.</p>
+      <h2>1. Built around how SLFPP actually works</h2>
+      <p>People walk into the program from communities across Monrovia and beyond. Field officers verify them. Loans are opened for livelihoods such as market stalls, catering, agriculture inputs, and trades. Installments fall on set dates. Staff need to know — without hunting — who registered this week, what each person still owes, and who should pay today.</p>
+      <p class="quote">“Mary Kollie should pay today” should appear on a screen before anyone has to remember it. A new intake should never leave without a record. A loan’s full payment history should open in seconds.</p>
       <div class="flow">
         <div><div class="n">Step 1</div><div class="l">Person walks in</div></div>
         <div><div class="n">Step 2</div><div class="l">Register &amp; verify</div></div>
@@ -89,44 +94,66 @@
     </div>
 
     <div class="card">
-      <h2>2. What you get</h2>
+      <h2>2. Three modules — complete enough for daily operations</h2>
       <div class="three">
-        <div class="pill"><div class="t">Incoming registration</div><p>Identity, phone, community, livelihood, next of kin, preferred WhatsApp/SMS channel, officer, and intake status.</p></div>
-        <div class="pill"><div class="t">Loan track record</div><p>Per member: principal, balance, percent paid, purpose, and a full timeline of disbursements and installments.</p></div>
-        <div class="pill"><div class="t">Payment reminders</div><p>Due today, overdue, and upcoming this week — with amount, loan ID, channel, and mark-paid actions.</p></div>
+        <div class="pill">
+          <div class="t">Incoming registration</div>
+          <p>Capture full name, phone, community, ID, reason for coming in, livelihood, next of kin, preferred WhatsApp/SMS channel, field officer, referral source, and intake status (new → pending verification → eligible for loan screening). Recent intakes stay searchable so supervisors can review the week’s walk-ins.</p>
+        </div>
+        <div class="pill">
+          <div class="t">Loan track record</div>
+          <p>Per member: every loan opened, purpose, principal in LRD, balance remaining, percent paid, open date, status (active/closed), and a dated timeline of disbursements and installment payments — including prior closed loans for the same person.</p>
+        </div>
+        <div class="pill">
+          <div class="t">Payment-due reminders</div>
+          <p>Morning list of who should pay today (amount + loan ID + channel), overdue members who missed yesterday, and upcoming dues later this week. Staff queue a WhatsApp or SMS reminder, then mark paid when cash or mobile money lands.</p>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <h2>3. How reminders work each morning</h2>
+      <h2>3. What changes for SLFPP when this is in place</h2>
+      <div class="outcomes">
+        <div><strong>Fewer missed payments</strong> — due-today and overdue are visible every morning</div>
+        <div><strong>Cleaner intakes</strong> — every walk-in gets a complete registration record</div>
+        <div><strong>Faster follow-up</strong> — loan history and balance open without digging through paper</div>
+        <div><strong>Clearer supervision</strong> — dashboard shows members, active loans, due today, and collections</div>
+        <div><strong>Channel-ready outreach</strong> — preferred WhatsApp/SMS is stored at registration</div>
+        <div><strong>Credible operations</strong> — sample data in Liberia LRD so Lawrence can judge fit immediately</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4. How staff use reminders each morning</h2>
       <ul>
-        <li><strong>Due today</strong> — staff see who should pay today with LRD amount and loan number.</li>
-        <li><strong>Overdue</strong> — missed installments stay visible until cleared.</li>
-        <li><strong>Upcoming this week</strong> — plan outreach before the due date.</li>
-        <li><strong>Queue WhatsApp / SMS</strong> — send reminder, then mark paid when money lands.</li>
+        <li><strong>Open Reminders</strong> — see the day’s due list (example: Mary Kollie, LRD 25,000, LN-1042, WhatsApp).</li>
+        <li><strong>Act on overdue first</strong> — members who missed yesterday stay highlighted until cleared.</li>
+        <li><strong>Queue outreach</strong> — send reminder on the member’s preferred channel.</li>
+        <li><strong>Mark paid</strong> — when cash, Orange Money, Lonestar MTN, or other mobile money arrives, update the record.</li>
+        <li><strong>Glance at upcoming</strong> — plan mid-week outreach before installment dates hit.</li>
       </ul>
     </div>
 
     <div class="price">
       <div>
         <div class="eyebrow">Investment</div>
-        <div class="amt">$1,000<span>one-time build for SLFPP</span></div>
+        <div class="amt">$1,000<span>one-time custom build for SLFPP</span></div>
       </div>
       <ul>
         <li>Incoming registration module</li>
-        <li>Loan history, balances &amp; payments</li>
-        <li>Payment-due reminders</li>
+        <li>Loan history, balances &amp; payment timeline</li>
+        <li>Payment-due / overdue / upcoming reminders</li>
         <li>Staff dashboard overview</li>
-        <li>Custom fit for SLFPP</li>
-        <li>Free demo before you decide</li>
+        <li>Fitted to Society For Less Fortunate People Project</li>
+        <li>Free live demo before you decide</li>
       </ul>
     </div>
 
     <div class="card">
-      <h2>4. Next step</h2>
-      <p>Open the interactive sample and walk through Dashboard → Registration → Loan Track Record → Reminders. When ready, message Payeconnect for a free demo.</p>
+      <h2>5. What this sample proves (and what the full build delivers)</h2>
+      <p>This interactive sample uses realistic Liberia-flavored example data so Lawrence can click through the exact workflows. Numbers and names are sample only — not live SLFPP records. The full $1,000 build connects to your real members, loans, and payment process, with the same structure you see here.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="index.html">Open sample demo</a>
+        <a class="btn btn-primary" href="index.html">Open the sample demo</a>
         <a class="btn btn-secondary" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">WhatsApp · Book free demo</a>
       </div>
       <p class="wa">WhatsApp: <strong>+231 888 916 127</strong> · Payeconnect</p>
