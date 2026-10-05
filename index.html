@@ -66,7 +66,7 @@
     }
     .brand-text strong { display: block; font-size: 0.95rem; color: var(--heading); font-weight: 650; }
     .brand-text span { font-size: 0.78rem; color: var(--muted); }
-    .top-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; }
+    .top-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 0.55rem; }
     .meta-chip {
       font-size: 0.78rem; color: var(--muted);
       background: var(--bg); border: 1px solid var(--border);
@@ -317,9 +317,217 @@
     .price-panel li::before {
       content: "✓"; position: absolute; left: 0; color: var(--primary); font-weight: 700;
     }
+
+    /* ---------- Staff login gate ---------- */
+    body:not(.signed-in) { overflow: hidden; }
+    .gate {
+      position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+      padding: 1.25rem; overflow-y: auto;
+      background: radial-gradient(1100px 560px at 8% 0%, rgba(11,110,106,0.38), transparent 60%),
+                  linear-gradient(160deg, #0b1f33 0%, #0d2a40 55%, #0b3b45 100%);
+    }
+    body.signed-in .gate { display: none; }
+    .gate-card {
+      width: 100%; max-width: 940px; display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--surface); border-radius: 18px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+    @media (max-width: 780px) { .gate-card { grid-template-columns: 1fr; } .gate-side { display: none !important; } }
+    .gate-side {
+      background: linear-gradient(170deg, #0b6e6a, #0b4f5c); color: #e6f4f2;
+      padding: 2.25rem 2rem; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .gate-side h2 { font-family: var(--display); font-size: 1.8rem; line-height: 1.18; color: #fff; letter-spacing: -0.02em; font-weight: 700; }
+    .gate-side p { font-size: 0.92rem; color: #cfe9e6; }
+    .gate-side ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .gate-side li { font-size: 0.88rem; padding-left: 1.35rem; position: relative; color: #e6f4f2; }
+    .gate-side li strong { color: #fff; }
+    .gate-side li::before { content: "✓"; position: absolute; left: 0; color: #8fe3d9; font-weight: 700; }
+    .gate-side .foot { margin-top: auto; font-size: 0.76rem; color: #a9d6d1; }
+    .gate-form { padding: 2.25rem 2rem; }
+    .gate-form .eyebrow-sm { margin-bottom: 0.35rem; }
+    .gate-form h1 { font-family: var(--display); font-size: 1.6rem; color: var(--heading); margin-bottom: 0.25rem; letter-spacing: -0.02em; }
+    .gate-form .sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.15rem; }
+    .role-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1rem; }
+    .role-opt {
+      border: 1.5px solid var(--border-strong); border-radius: 10px; padding: 0.8rem 0.85rem; cursor: pointer;
+      background: var(--surface); text-align: left; font: inherit; color: inherit; transition: border-color .15s, background .15s;
+    }
+    .role-opt:hover { border-color: var(--primary); }
+    .role-opt.selected { border-color: var(--primary); background: var(--primary-soft); box-shadow: 0 0 0 3px rgba(11,110,106,0.12); }
+    .role-opt .rt { font-weight: 700; color: var(--heading); font-size: 0.93rem; display: flex; align-items: center; gap: 0.4rem; }
+    .role-opt .rd { font-size: 0.76rem; color: var(--muted); margin-top: 0.2rem; line-height: 1.35; }
+    .gate-form .fld { margin-bottom: 0.75rem; }
+    .gate-note {
+      font-size: 0.76rem; color: var(--muted); margin-top: 0.9rem; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.75rem; line-height: 1.45;
+    }
+    .eyebrow-sm { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
+
+    /* ---------- Roles ---------- */
+    body.role-officer .admin-only { display: none !important; }
+    body.role-admin .officer-only { display: none !important; }
+    .role-chip { background: var(--primary-soft); color: var(--primary); border-color: #b7e0dc; font-weight: 600; }
+    .role-banner {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.9rem;
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+      border-radius: 10px; padding: 0.7rem 1rem; margin: -0.35rem 0 1.15rem;
+      font-size: 0.86rem; color: var(--muted); box-shadow: var(--shadow);
+    }
+    .role-banner strong { color: var(--heading); }
+    nav.tabs button { min-width: 0; flex: 1 1 auto; white-space: nowrap; }
+    .role-banner > span { flex: 1; min-width: 0; }
+
+    /* ---------- Member links & profile modal ---------- */
+    .member-link {
+      color: var(--heading); font-weight: 600; cursor: pointer; background: none; border: none; padding: 0;
+      font: inherit; font-weight: 600; border-bottom: 1px dashed var(--border-strong); text-align: left;
+    }
+    .member-link:hover { color: var(--primary); border-bottom-color: var(--primary); text-decoration: none; }
+    .modal {
+      position: fixed; inset: 0; z-index: 90; background: rgba(11,31,51,0.55);
+      display: none; align-items: flex-start; justify-content: center; padding: 2.5rem 1rem; overflow-y: auto;
+    }
+    .modal.open { display: flex; }
+    .modal-card { background: var(--surface); border-radius: 16px; width: 100%; max-width: 900px; box-shadow: 0 30px 80px rgba(0,0,0,0.3); }
+    .modal-head { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding: 1.3rem 1.45rem; border-bottom: 1px solid var(--border); }
+    .modal-head h2 { font-family: var(--display); font-size: 1.45rem; color: var(--heading); letter-spacing: -0.02em; line-height: 1.2; }
+    .pf-sub { font-size: 0.84rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.35rem 0.6rem; align-items: center; margin-top: 0.15rem; }
+    .avatar.lg { width: 58px; height: 58px; font-size: 1.05rem; background: var(--primary-soft); color: var(--primary); }
+    .modal-body { padding: 1.2rem 1.45rem 1.45rem; }
+    .profile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 0.9rem; }
+    @media (max-width: 780px) { .profile-grid { grid-template-columns: 1fr; } }
+    .pf-sec { border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 0.95rem; background: #fbfcfd; }
+    .pf-sec h4, .pf-h { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.55rem; }
+    .pf-h { margin: 1.25rem 0 0.5rem; }
+    .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 0.8rem; font-size: 0.84rem; }
+    .kv dt { color: var(--muted); }
+    .kv dd { color: var(--heading); font-weight: 600; text-align: right; }
+    .pf-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .empty { color: var(--muted); font-size: 0.88rem; padding: 1.25rem; text-align: center; background: var(--bg); border: 1px dashed var(--border-strong); border-radius: 10px; }
+
+    /* ---------- Disburse ---------- */
+    .grid-2.flip { grid-template-columns: 0.8fr 1.2fr; }
+    @media (max-width: 860px) { .grid-2.flip { grid-template-columns: 1fr; } }
+    .sched-meta { font-size: 0.84rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .sched-meta strong { color: var(--heading); }
+    table.num td.r, table.num th.r { text-align: right; font-variant-numeric: tabular-nums; }
+    table.num td { white-space: nowrap; }
+    #scheduleBody table th, #scheduleBody table td { padding-left: 0.45rem; padding-right: 0.45rem; }
+    tr.total td { font-weight: 700; color: var(--heading); border-top: 2px solid var(--border-strong); background: #fbfcfd; }
+
+    /* ---------- Reports ---------- */
+    .report-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 0.75rem; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .report-block { margin-bottom: 1rem; }
+    .report-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+    .report-title h3 { margin-bottom: 0; }
+    .report-title .sub { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+    .print-only { display: none; }
+
+    /* ---------- Settings ---------- */
+    .toggle-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--heading); font-weight: 600; }
+    .toggle-row:last-of-type { border-bottom: none; }
+    .toggle-row small { display: block; color: var(--muted); font-size: 0.76rem; font-weight: 400; }
+    label.switch { position: relative; display: inline-block; width: 40px; height: 22px; flex-shrink: 0; margin: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .switch span { position: absolute; inset: 0; background: #cfd5dd; border-radius: 999px; transition: .2s; cursor: pointer; }
+    .switch span::before { content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+    .switch input:checked + span { background: var(--primary); }
+    .switch input:checked + span::before { transform: translateX(18px); }
+    .yes { color: var(--ok); font-weight: 700; }
+    .no { color: #9aa3ae; }
+
+    /* ---------- Print ---------- */
+    @media print {
+      @page { margin: 14mm; }
+      body { background: #fff !important; font-size: 12px; }
+      .card, .stat { box-shadow: none !important; break-inside: avoid; }
+      .no-print { display: none !important; }
+      body.print-reports > *:not(.wrap) { display: none !important; }
+      body.print-reports .wrap { padding: 0; max-width: none; }
+      body.print-reports .wrap > *:not(#reports) { display: none !important; }
+      body.print-reports #reports { display: block !important; }
+      body.print-reports .print-only { display: block; }
+      body.print-profile > *:not(#profileModal) { display: none !important; }
+      body.print-profile #profileModal { position: static; display: block; background: none; padding: 0; overflow: visible; }
+      body.print-profile .modal-card { box-shadow: none; max-width: none; }
+      .print-head { border-bottom: 2px solid var(--heading); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+      .print-head strong { font-family: var(--display); font-size: 1.25rem; color: var(--heading); display: block; }
+      .print-head span { font-size: 0.8rem; color: var(--muted); }
+    }
+
+    /* ---------- Visual refinement pass ---------- */
+    @media (max-width: 640px) { .topbar { position: static; } nav.tabs button { flex: 1 1 45%; } .modal { padding: 0.75rem 0.5rem; } .loan-summary[style] { grid-template-columns: 1fr 1fr !important; } }
+    body { font-size: 14.5px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    .wrap { padding: 1.5rem 1.25rem 3rem; }
+    .btn { transition: background .15s, border-color .15s, box-shadow .15s, color .15s; letter-spacing: 0.005em; line-height: 1.2; }
+    .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(11,110,106,0.22); }
+    .btn-primary { box-shadow: 0 1px 2px rgba(11,31,51,0.12), inset 0 -1px 0 rgba(0,0,0,0.08); }
+    .btn-secondary:hover { border-color: #b9c1cb; }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .card { padding: 1.1rem 1.15rem; border-color: #e4e8ed; }
+    .card h3 { font-size: 0.93rem; letter-spacing: -0.005em; margin-bottom: 0.75rem; }
+    .page-intro { padding: 1.35rem 1.45rem; position: relative; overflow: hidden; }
+    .page-intro::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--primary); }
+    .page-intro h1 { font-size: 1.6rem; }
+    .stat { position: relative; padding: 0.95rem 1.05rem; }
+    .stat .value { font-variant-numeric: tabular-nums; font-size: 1.5rem; }
+    .stat .hint { color: #6b7684; }
+    .section-head h2 { font-size: 1.25rem; }
+    th { background: #f8fafb; padding: 0.55rem 0.6rem; border-bottom-color: var(--border); white-space: nowrap; }
+    th:first-child { border-top-left-radius: 7px; } th:last-child { border-top-right-radius: 7px; }
+    td { padding: 0.62rem 0.6rem; font-variant-numeric: tabular-nums; }
+    tbody tr { transition: background .12s; }
+    tbody tr:hover td { background: #fafbfc; }
+    .badge { letter-spacing: 0.01em; padding: 0.16rem 0.55rem; }
+    nav.tabs { padding: 0.28rem; gap: 0.2rem; }
+    nav.tabs button { padding: 0.6rem 0.75rem; font-size: 0.86rem; transition: background .15s, color .15s; }
+    nav.tabs button.active { box-shadow: inset 0 0 0 1px #b7e0dc; }
+    .note { font-size: 0.85rem; line-height: 1.5; border-left: 3px solid #cfd5dd; }
+    .reminder-card { transition: box-shadow .15s, border-color .15s; }
+    .reminder-card:hover { border-color: var(--border-strong); }
+    input, select, textarea { transition: border-color .15s, box-shadow .15s; }
   </style>
 </head>
 <body>
+  <div class="gate" id="loginGate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <div class="gate-card">
+      <div class="gate-side">
+        <div class="brand">
+          <div class="logo" style="background:#fff;color:var(--heading)">SL</div>
+          <div class="brand-text"><strong style="color:#fff">SLFPP Assistant</strong><span style="color:#cfe9e6">Society For Less Fortunate People Project</span></div>
+        </div>
+        <h2>One staff workspace for registration, loans &amp; collections.</h2>
+        <p>Each staff member signs in with their own account. What they can see and do depends on their role.</p>
+        <ul>
+          <li><strong>Admin</strong> — reports &amp; CSV export, settings, loan disbursement, every module</li>
+          <li><strong>Field Officer</strong> — register walk-ins, open member profiles, work payment reminders</li>
+          <li>Every action tied to a named staff account</li>
+        </ul>
+        <div class="foot">Built by Payeconnect · Sample data only · Monrovia, Liberia</div>
+      </div>
+      <form class="gate-form" id="loginForm" autocomplete="off">
+        <div class="eyebrow-sm">SLFPP Assistant · Sample</div>
+        <h1 id="gateTitle">Staff login</h1>
+        <p class="sub">Choose a role to enter the sample workspace.</p>
+        <div class="role-pick" role="radiogroup" aria-label="Role">
+          <button type="button" class="role-opt selected" data-role="admin" role="radio" aria-checked="true">
+            <div class="rt">Admin</div>
+            <div class="rd">Supervisor · reports, settings &amp; loan disbursement</div>
+          </button>
+          <button type="button" class="role-opt" data-role="officer" role="radio" aria-checked="false">
+            <div class="rt">Field Officer</div>
+            <div class="rd">J. Kamara · registration &amp; reminders</div>
+          </button>
+        </div>
+        <div class="fld"><label for="staffId">Staff ID</label><input id="staffId" value="admin.slfpp" /></div>
+        <div class="fld"><label for="staffPin">PIN</label><input id="staffPin" type="password" value="2026" inputmode="numeric" /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:0.72rem;margin-top:0.25rem" id="signInBtn">Sign in as Admin</button>
+        <div class="gate-note"><strong style="color:var(--heading)">Demo login — no real authentication.</strong> Any PIN works. In the live system every staff member has a personal account, PIN and activity trail.</div>
+      </form>
+    </div>
+  </div>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -330,10 +538,9 @@
         </div>
       </div>
       <div class="top-actions">
-        <span class="meta-chip">Staff workspace · Sample data</span>
-        <span class="meta-chip">Officer: J. Kamara</span>
-        <span class="meta-chip">Monrovia, Liberia</span>
-        <a class="btn btn-secondary btn-sm" href="#about">About &amp; pricing</a>
+        <span class="meta-chip role-chip" id="roleChip">Signed in</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="switchRole">Switch role</button>
+        <a class="btn btn-secondary btn-sm" href="#about">About</a>
         <a class="btn btn-secondary btn-sm" href="proposal.html">View proposal</a>
         <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book free demo</a>
       </div>
@@ -343,7 +550,7 @@
   <div class="wrap">
     <div class="page-intro">
       <h1>A real staff system that keeps SLFPP registration, loans, and “who pays today” under control</h1>
-      <p>Prepared for <strong style="color:var(--heading)">Lawrence</strong> and the <strong style="color:var(--heading)">Society For Less Fortunate People Project</strong>. This interactive sample shows a serious, day-to-day staff system: register every walk-in, open each member’s loan history in LRD, and act on payment-due reminders before money is missed — built by Payeconnect as a serious custom system for daily operations.</p>
+      <p>Prepared for <strong style="color:var(--heading)">Lawrence</strong> and the <strong style="color:var(--heading)">Society For Less Fortunate People Project</strong>. This interactive sample shows a serious, day-to-day staff system: register every walk-in, open each member’s loan history in LRD, act on payment-due reminders before money is missed, disburse new loans with a full repayment schedule, open complete member profiles, and print or export reports — with separate Admin and Field Officer access. Built by Payeconnect as a serious custom system for daily operations.</p>
       <div class="price-line">
         <span><strong>Custom SLFPP system</strong> · Payeconnect</span>
         <span>WhatsApp +231 888 916 127 · Free demo</span>
@@ -359,7 +566,7 @@
           <strong style="color:var(--heading)">Payeconnect</strong> builds practical systems for organizations that run on trust and daily discipline. For <strong style="color:var(--heading)">Society For Less Fortunate People Project (SLFPP)</strong>, that means one credible place to register people who walk in, keep each member’s loan track record accurate, and know who should pay today — before the day is lost to notebooks and memory.
         </p>
         <p style="color:var(--muted);font-size:0.92rem;margin:0;line-height:1.55">
-          This is a focused <strong style="color:var(--heading)">custom operations system</strong> for Lawrence and SLFPP staff: three modules aligned to real Liberian field work (communities, LRD amounts, WhatsApp/SMS follow-up). What you see below is the working sample — try every tab, then book a free demo.
+          This is a focused <strong style="color:var(--heading)">custom operations system</strong> for Lawrence and SLFPP staff: core modules aligned to real Liberian field work (communities, LRD amounts, WhatsApp/SMS follow-up). What you see below is the working sample — try every tab, then book a free demo.
         </p>
       </div>
       <div class="price-panel">
@@ -370,7 +577,10 @@
           <li>Loan track record with balances &amp; timelines</li>
           <li>Payment-due, overdue &amp; upcoming reminders</li>
           <li>Staff operations dashboard</li>
-          <li>Searchable member &amp; activity history</li>
+          <li>Staff login with Admin &amp; Field Officer roles</li>
+          <li>Member profiles — identity, loans, payments, channel</li>
+          <li>Loan disbursement with repayment schedule</li>
+          <li>Printable reports &amp; CSV export</li>
           <li>Built for SLFPP field reality in Liberia</li>
         </ul>
         <div style="margin-top:0.9rem;display:flex;flex-wrap:wrap;gap:0.45rem">
@@ -385,7 +595,11 @@
       <button type="button" data-tab="registration">Incoming Registration</button>
       <button type="button" data-tab="loans">Loan Track Record</button>
       <button type="button" data-tab="reminders">Payment Reminders</button>
+      <button type="button" data-tab="disburse" class="admin-only">Disburse Loan</button>
+      <button type="button" data-tab="reports" class="admin-only">Reports</button>
+      <button type="button" data-tab="settings" class="admin-only">Settings</button>
     </nav>
+    <div class="role-banner" id="roleBanner"></div>
 
     <section id="dashboard" class="panel active">
       <div class="section-head">
@@ -425,11 +639,11 @@
               <tr><th>Member</th><th>Amount</th><th>Loan</th><th>Status</th></tr>
             </thead>
             <tbody>
-              <tr><td>Mary Kollie</td><td>LRD 25,000</td><td>LN-1042</td><td><span class="badge due">Pay today</span></td></tr>
-              <tr><td>James Flomo</td><td>LRD 40,000</td><td>LN-0988</td><td><span class="badge due">Pay today</span></td></tr>
-              <tr><td>Patience Weah</td><td>LRD 18,500</td><td>LN-1101</td><td><span class="badge due">Pay today</span></td></tr>
-              <tr><td>Emmanuel Toe</td><td>LRD 30,000</td><td>LN-0915</td><td><span class="badge overdue">1 day overdue</span></td></tr>
-              <tr><td>Sarah Garmai</td><td>LRD 22,000</td><td>LN-1077</td><td><span class="badge due">Pay today</span></td></tr>
+              <tr><td><button type="button" class="member-link" data-member="Mary Kollie">Mary Kollie</button></td><td>LRD 25,000</td><td>LN-1042</td><td><span class="badge due">Pay today</span></td></tr>
+              <tr><td><button type="button" class="member-link" data-member="James Flomo">James Flomo</button></td><td>LRD 40,000</td><td>LN-0988</td><td><span class="badge due">Pay today</span></td></tr>
+              <tr><td><button type="button" class="member-link" data-member="Patience Weah">Patience Weah</button></td><td>LRD 18,500</td><td>LN-1101</td><td><span class="badge due">Pay today</span></td></tr>
+              <tr><td><button type="button" class="member-link" data-member="Emmanuel Toe">Emmanuel Toe</button></td><td>LRD 30,000</td><td>LN-0915</td><td><span class="badge overdue">1 day overdue</span></td></tr>
+              <tr><td><button type="button" class="member-link" data-member="Sarah Garmai">Sarah Garmai</button></td><td>LRD 22,000</td><td>LN-1077</td><td><span class="badge due">Pay today</span></td></tr>
             </tbody>
           </table>
           <div style="margin-top:0.85rem">
@@ -441,9 +655,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
             Recent activity
           </h3>
+          <div id="activityList">
           <div class="activity-row">
-            <div class="avatar">MK</div>
-            <div class="txt">Mary Kollie registered<small>Red Light · Field officer referral</small></div>
+            <div class="avatar">MT</div>
+            <div class="txt">Musu Togba registered<small>Red Light · Field officer referral</small></div>
             <div class="time">Today 09:14</div>
           </div>
           <div class="activity-row">
@@ -461,10 +676,27 @@
             <div class="txt">New loan opened — Emmanuel Toe<small>LN-0915 · LRD 150,000 · 6 months</small></div>
             <div class="time">Sat 3 Oct</div>
           </div>
+          </div>
         </div>
       </div>
 
-        <div class="card" style="margin-top:1rem">
+        <div class="card officer-only" style="margin-top:1rem">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Your focus today · J. Kamara
+          </h3>
+          <table>
+            <thead><tr><th>Task</th><th>Count</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Clear overdue follow-ups</td><td>1</td><td style="text-align:right"><button type="button" class="btn btn-secondary btn-sm" data-goto="reminders">Open</button></td></tr>
+              <tr><td>Work due-today reminders</td><td>7</td><td style="text-align:right"><button type="button" class="btn btn-secondary btn-sm" data-goto="reminders">Open</button></td></tr>
+              <tr><td>Verify pending intakes</td><td>2</td><td style="text-align:right"><button type="button" class="btn btn-secondary btn-sm" data-goto="registration">Open</button></td></tr>
+              <tr><td>Register walk-ins</td><td>—</td><td style="text-align:right"><button type="button" class="btn btn-primary btn-sm" data-goto="registration">Register</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card admin-only" style="margin-top:1rem">
           <h3>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3 3 7-8"/></svg>
             Collection performance (this month)
@@ -478,6 +710,7 @@
               <tr><td>New intakes registered</td><td>12</td><td>Awaiting / completed verification</td></tr>
             </tbody>
           </table>
+          <div style="margin-top:0.85rem"><button type="button" class="btn btn-secondary btn-sm" data-goto="reports">Open reports</button></div>
         </div>
     </section>
 
@@ -595,14 +828,7 @@
               <thead>
                 <tr><th>Name</th><th>Community</th><th>Purpose</th><th>Date</th><th>Status</th></tr>
               </thead>
-              <tbody id="regTableBody">
-                <tr><td>Mary Kollie</td><td>Red Light</td><td>Dry goods stall</td><td>5 Oct 2026</td><td><span class="badge new">New intake</span></td></tr>
-                <tr><td>Joseph Mensah</td><td>Paynesville</td><td>Spare parts</td><td>4 Oct 2026</td><td><span class="badge pending">Pending</span></td></tr>
-                <tr><td>Hawa Sesay</td><td>Sinkor</td><td>Fish mongering</td><td>4 Oct 2026</td><td><span class="badge active">Eligible</span></td></tr>
-                <tr><td>Prince Johnson</td><td>Barnersville</td><td>Agri inputs</td><td>3 Oct 2026</td><td><span class="badge active">Eligible</span></td></tr>
-                <tr><td>Grace Tarpeh</td><td>Clara Town</td><td>Tailoring</td><td>2 Oct 2026</td><td><span class="badge pending">Pending</span></td></tr>
-                <tr><td>Daniel Kpadeh</td><td>West Point</td><td>Catering</td><td>1 Oct 2026</td><td><span class="badge active">Eligible</span></td></tr>
-              </tbody>
+              <tbody id="regTableBody"></tbody>
             </table>
           </div>
         </div>
@@ -653,9 +879,187 @@
       <div class="reminder-grid" id="upcomingGrid"></div>
     </section>
 
+    <section id="disburse" class="panel">
+      <div class="section-head">
+        <h2>Disburse new loan</h2>
+        <p>Create a livelihood loan for a member and generate the repayment schedule before money leaves the office.</p>
+      </div>
+      <div class="note"><strong>Admin approval step:</strong> Choose the member, enter principal in LRD, term in months and purpose. The assistant builds the monthly installment schedule instantly. Confirming adds the loan to the member’s track record and profile, and the first installment goes into reminders.</div>
+      <div class="grid-2 flip">
+        <div class="card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
+            Loan details
+          </h3>
+          <form id="loanForm" autocomplete="off">
+            <div class="form-grid">
+              <div class="full">
+                <label for="dMember">Member</label>
+                <select id="dMember" required></select>
+              </div>
+              <div>
+                <label for="dPrincipal">Principal (LRD)</label>
+                <input id="dPrincipal" type="number" min="5000" step="500" value="120000" required />
+              </div>
+              <div>
+                <label for="dTerm">Term (months)</label>
+                <select id="dTerm">
+                  <option>3</option><option>4</option><option>5</option><option selected>6</option><option>9</option><option>12</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="dPurpose">Purpose</label>
+                <input id="dPurpose" value="Market stall — restock dry goods" required />
+              </div>
+              <div>
+                <label for="dStart">Disbursement date</label>
+                <input id="dStart" type="date" value="2026-10-05" />
+              </div>
+              <div>
+                <label for="dRate">Service charge</label>
+                <select id="dRate">
+                  <option value="0" selected>None (0%)</option>
+                  <option value="1">1% flat / month</option>
+                  <option value="1.5">1.5% flat / month</option>
+                  <option value="2">2% flat / month</option>
+                </select>
+                <div class="field-hint">Set per SLFPP lending policy</div>
+              </div>
+              <div>
+                <label for="dMethod">Disbursed via</label>
+                <select id="dMethod">
+                  <option>Cash</option><option>Orange Money</option><option>Lonestar MTN Mobile Money</option><option>Bank transfer</option>
+                </select>
+              </div>
+              <div>
+                <label for="dGuarantor">Guarantor</label>
+                <input id="dGuarantor" placeholder="Name · phone" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-secondary">Generate schedule</button>
+              <button type="button" class="btn btn-primary" id="confirmDisburse" disabled>Confirm disbursement</button>
+            </div>
+            <div class="toast" id="loanToast"></div>
+          </form>
+        </div>
+        <div class="card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Repayment schedule
+          </h3>
+          <div id="scheduleBody"><div class="empty">Fill in the loan details and click <strong>Generate schedule</strong>.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reports" class="panel">
+      <div class="print-only print-head">
+        <strong>SLFPP Assistant — Operations report</strong>
+        <span>Society For Less Fortunate People Project · Generated 5 Oct 2026 · Sample data, not live SLFPP records · Payeconnect</span>
+      </div>
+      <div class="section-head report-head">
+        <div>
+          <h2>Reports</h2>
+          <p>Collection summary, due list and new intakes for October 2026 — print for the monthly meeting or export CSV for Excel.</p>
+        </div>
+        <div class="toolbar no-print">
+          <button type="button" class="btn btn-primary btn-sm" id="printReports">Print report</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-csv="all">Export all (CSV)</button>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="label">Expected this month</div><div class="value">LRD 1.32M</div><div class="hint">142 installments</div></div>
+        <div class="stat"><div class="label">Collected</div><div class="value">LRD 1.24M</div><div class="hint">128 paid on time</div></div>
+        <div class="stat"><div class="label">Collection rate</div><div class="value">94%</div><div class="hint">14 late / overdue</div></div>
+        <div class="stat"><div class="label">Outstanding portfolio</div><div class="value">LRD 4.82M</div><div class="hint">86 active loans</div></div>
+      </div>
+      <div class="card report-block">
+        <div class="report-title">
+          <h3>Collection summary <span class="sub">· October 2026 · by community</span></h3>
+          <button type="button" class="btn btn-secondary btn-sm no-print" data-csv="collection">Export CSV</button>
+        </div>
+        <div style="overflow-x:auto"><table class="num" id="tblCollection"></table></div>
+      </div>
+      <div class="card report-block">
+        <div class="report-title">
+          <h3>Due list <span class="sub">· today, overdue &amp; this week</span></h3>
+          <button type="button" class="btn btn-secondary btn-sm no-print" data-csv="due">Export CSV</button>
+        </div>
+        <div style="overflow-x:auto"><table class="num" id="tblDue"></table></div>
+      </div>
+      <div class="card report-block">
+        <div class="report-title">
+          <h3>New intakes <span class="sub">· registrations this period</span></h3>
+          <button type="button" class="btn btn-secondary btn-sm no-print" data-csv="intakes">Export CSV</button>
+        </div>
+        <div style="overflow-x:auto"><table id="tblIntakes"></table></div>
+      </div>
+    </section>
+
+    <section id="settings" class="panel">
+      <div class="section-head">
+        <h2>Settings</h2>
+        <p>Organization defaults, reminder rules, and staff accounts with role-based access. Admin only.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Organization &amp; reminder rules
+          </h3>
+          <form id="settingsForm" autocomplete="off">
+            <div class="form-grid">
+              <div class="full"><label for="sOrg">Organization</label><input id="sOrg" value="Society For Less Fortunate People Project (SLFPP)" /></div>
+              <div><label for="sCur">Currency</label><select id="sCur"><option>LRD — Liberian dollar</option></select></div>
+              <div><label for="sTime">Daily reminder time</label><input id="sTime" type="time" value="07:00" /></div>
+              <div><label for="sChan">Default reminder channel</label><select id="sChan"><option>WhatsApp</option><option>SMS</option><option>Phone call</option></select></div>
+              <div><label for="sGrace">Overdue after (days)</label><input id="sGrace" type="number" min="0" value="1" /></div>
+            </div>
+            <div style="margin-top:0.8rem">
+              <div class="toggle-row"><div>Auto-queue due-today reminders<small>Every morning at the reminder time</small></div><label class="switch"><input type="checkbox" checked /><span></span></label></div>
+              <div class="toggle-row"><div>Admin approval for new loans<small>Officers can prepare, Admin confirms disbursement</small></div><label class="switch"><input type="checkbox" checked /><span></span></label></div>
+              <div class="toggle-row"><div>Officers can view reports<small>Off — reports stay with Admin</small></div><label class="switch"><input type="checkbox" /><span></span></label></div>
+            </div>
+            <div class="form-actions"><button type="submit" class="btn btn-primary">Save settings</button></div>
+            <div class="toast" id="settingsToast">Settings saved (sample only).</div>
+          </form>
+        </div>
+        <div class="card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Staff accounts &amp; roles
+          </h3>
+          <div style="overflow-x:auto">
+            <table>
+              <thead><tr><th>Staff</th><th>Role</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><strong style="color:var(--heading)">SLFPP Admin</strong><br /><small style="color:var(--muted)">Supervisor · admin.slfpp</small></td><td><span class="badge active">Admin</span></td><td><span class="badge paid">Active</span></td></tr>
+                <tr><td><strong style="color:var(--heading)">J. Kamara</strong><br /><small style="color:var(--muted)">Field officer · jkamara</small></td><td><span class="badge pending">Officer</span></td><td><span class="badge paid">Active</span></td></tr>
+                <tr><td><strong style="color:var(--heading)">M. Dolo</strong><br /><small style="color:var(--muted)">Field officer · mdolo</small></td><td><span class="badge pending">Officer</span></td><td><span class="badge paid">Active</span></td></tr>
+                <tr><td><strong style="color:var(--heading)">F. Johnson</strong><br /><small style="color:var(--muted)">Field officer · fjohnson</small></td><td><span class="badge pending">Officer</span></td><td><span class="badge new">Invited</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pf-h">Role permissions</div>
+          <table>
+            <thead><tr><th>Permission</th><th>Admin</th><th>Officer</th></tr></thead>
+            <tbody>
+              <tr><td>Register members</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Member profiles &amp; loan history</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Payment reminders &amp; mark paid</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td>Disburse loans</td><td class="yes">✓</td><td class="no">—</td></tr>
+              <tr><td>Reports &amp; CSV export</td><td class="yes">✓</td><td class="no">—</td></tr>
+              <tr><td>Settings &amp; staff accounts</td><td class="yes">✓</td><td class="no">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <div class="card" style="margin-top:1.5rem">
       <h3 style="font-family:var(--display);font-size:1.15rem;margin-bottom:0.55rem">Built to impress serious operators — and to run SLFPP day to day</h3>
-      <p style="color:var(--muted);font-size:0.92rem;margin:0;line-height:1.55">Society For Less Fortunate People Project depends on clean intakes, trustworthy loan histories, and timely installment follow-up. This sample demonstrates the exact staff workflows — registration, loan track record, and payment-due reminders — as a full Payeconnect operations system for SLFPP. Walk every tab, then open the proposal. WhatsApp <strong style="color:var(--heading)">+231 888 916 127</strong> to book a free demo.</p>
+      <p style="color:var(--muted);font-size:0.92rem;margin:0;line-height:1.55">Society For Less Fortunate People Project depends on clean intakes, trustworthy loan histories, and timely installment follow-up. This sample demonstrates the exact staff workflows — staff login by role, registration, member profiles, loan track record, loan disbursement with repayment schedules, payment-due reminders, and printable reports with CSV export — as a full Payeconnect operations system for SLFPP. Sign in as Admin and as Field Officer, walk every tab, then open the proposal. WhatsApp <strong style="color:var(--heading)">+231 888 916 127</strong> to book a free demo.</p>
     </div>
 
     <footer>
@@ -666,54 +1070,107 @@
     </footer>
   </div>
 
-  <script>
-    const panels = document.querySelectorAll('.panel');
-    const tabBtns = document.querySelectorAll('nav.tabs button');
-    function showTab(id) {
-      panels.forEach(p => p.classList.toggle('active', p.id === id));
-      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
-    }
-    tabBtns.forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
-    document.querySelectorAll('[data-goto]').forEach(el => {
-      el.addEventListener('click', () => showTab(el.dataset.goto));
-    });
+  <div class="modal" id="profileModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pfName">
+      <div class="modal-head">
+        <div class="avatar lg" id="pfAvatar">—</div>
+        <div style="flex:1;min-width:200px">
+          <div class="eyebrow-sm">Member profile</div>
+          <h2 id="pfName">Member</h2>
+          <div class="pf-sub" id="pfSub"></div>
+        </div>
+        <div class="no-print" style="display:flex;gap:0.4rem">
+          <button type="button" class="btn btn-secondary btn-sm" id="pfPrint">Print profile</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="pfClose" aria-label="Close profile">Close ✕</button>
+        </div>
+      </div>
+      <div class="modal-body" id="pfBody"></div>
+    </div>
+  </div>
 
+  <script>
+    /* ---------- Helpers ---------- */
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
-    function fmtLRD(n) {
-      return 'LRD ' + Number(n).toLocaleString('en-LR');
+    function fmtLRD(n) { return 'LRD ' + Math.round(Number(n)).toLocaleString('en-US'); }
+    const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtDate(d) { return d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear(); }
+    function addMonths(d, n) {
+      const r = new Date(d.getFullYear(), d.getMonth() + n, d.getDate());
+      if (r.getDate() !== d.getDate()) r.setDate(0);
+      return r;
+    }
+    function initialsOf(name) { return name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join(''); }
+    function memberLink(name) { return `<button type="button" class="member-link" data-member="${escapeHtml(name)}">${escapeHtml(name)}</button>`; }
+    function flash(el, html, ms = 3500) {
+      if (html != null) el.innerHTML = html;
+      el.classList.add('show');
+      clearTimeout(el._t);
+      el._t = setTimeout(() => el.classList.remove('show'), ms);
     }
 
-    const regForm = document.getElementById('regForm');
-    const regToast = document.getElementById('regToast');
-    const regTableBody = document.getElementById('regTableBody');
-    regForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('fullName').value.trim();
-      const community = document.getElementById('community').value;
-      const status = document.getElementById('status').value;
-      const purpose = (document.getElementById('purpose').value || '—').trim().slice(0, 28);
-      let badgeClass = 'new';
-      let label = status;
-      if (status.includes('Eligible')) { badgeClass = 'active'; label = 'Eligible'; }
-      else if (status.includes('Pending')) { badgeClass = 'pending'; label = 'Pending'; }
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${escapeHtml(name)}</td><td>${escapeHtml(community)}</td><td>${escapeHtml(purpose || '—')}</td><td>5 Oct 2026</td><td><span class="badge ${badgeClass}">${escapeHtml(label)}</span></td>`;
-      regTableBody.prepend(tr);
-      regToast.classList.add('show');
-      regForm.reset();
-      setTimeout(() => regToast.classList.remove('show'), 3000);
-    });
-    document.getElementById('regSearch').addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase();
-      regTableBody.querySelectorAll('tr').forEach(tr => {
-        tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
-      });
+    /* ---------- Roles & staff login (sample only — no real auth) ---------- */
+    const ROLES = {
+      admin: {
+        label: 'Admin', user: 'SLFPP Admin', staffId: 'admin.slfpp',
+        tabs: ['dashboard','registration','loans','reminders','disburse','reports','settings'],
+        banner: '<strong>Admin view</strong> · Full access — dashboard, registration, loan track record, reminders, <strong>loan disbursement</strong>, <strong>reports</strong> and <strong>settings</strong>.'
+      },
+      officer: {
+        label: 'Field Officer', user: 'J. Kamara', staffId: 'jkamara',
+        tabs: ['dashboard','registration','loans','reminders'],
+        banner: '<strong>Field Officer view</strong> · Focused on registering walk-ins and working today’s payment reminders. Reports, settings and disbursement are Admin-only.'
+      }
+    };
+    let selectedRole = 'admin';
+    let currentRole = null;
+    const roleOpts = document.querySelectorAll('.role-opt');
+    roleOpts.forEach(btn => btn.addEventListener('click', () => {
+      selectedRole = btn.dataset.role;
+      roleOpts.forEach(b => { b.classList.toggle('selected', b === btn); b.setAttribute('aria-checked', b === btn ? 'true' : 'false'); });
+      document.getElementById('staffId').value = ROLES[selectedRole].staffId;
+      document.getElementById('signInBtn').textContent = 'Sign in as ' + ROLES[selectedRole].label;
+    }));
+    function signIn(role) {
+      if (!ROLES[role]) role = 'admin';
+      currentRole = role;
+      const r = ROLES[role];
+      document.body.classList.add('signed-in');
+      document.body.classList.toggle('role-admin', role === 'admin');
+      document.body.classList.toggle('role-officer', role === 'officer');
+      document.getElementById('roleChip').textContent = r.label + ' · ' + r.user;
+      document.getElementById('roleBanner').innerHTML = '<span>' + r.banner + '</span>';
+      try { sessionStorage.setItem('slfpp_role', role); } catch (e) {}
+      showTab('dashboard');
+    }
+    function signOut() {
+      document.body.classList.remove('signed-in', 'role-admin', 'role-officer');
+      currentRole = null;
+      try { sessionStorage.removeItem('slfpp_role'); } catch (e) {}
+      window.scrollTo(0, 0);
+    }
+    document.getElementById('loginForm').addEventListener('submit', e => { e.preventDefault(); signIn(selectedRole); window.scrollTo(0, 0); });
+    document.getElementById('switchRole').addEventListener('click', signOut);
+
+    /* ---------- Tabs ---------- */
+    const panels = document.querySelectorAll('.panel');
+    const tabBtns = document.querySelectorAll('nav.tabs button');
+    function showTab(id) {
+      if (currentRole && !ROLES[currentRole].tabs.includes(id)) id = 'dashboard';
+      panels.forEach(p => p.classList.toggle('active', p.id === id));
+      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+      if (id === 'reports') renderReports();
+    }
+    tabBtns.forEach(b => b.addEventListener('click', () => showTab(b.dataset.tab)));
+    document.addEventListener('click', e => {
+      const g = e.target.closest('[data-goto]');
+      if (g) { showTab(g.dataset.goto); g.closest('.modal') && closeProfile(); }
     });
 
+    /* ---------- Sample data ---------- */
     const members = [
-      { id:'m1', name:'Mary Kollie', community:'Red Light', initials:'MK', loans:[
+      { id:'m1', name:'Mary Kollie', community:'Red Light', memberNo:'SLF-0412', phone:'+231 77X XXX 214', gender:'Female', idType:'National ID', idNo:'NID-RL-20418', livelihood:'Market trader — dry goods', kin:'Joseph Kollie · +231 77X XXX 980', officer:'J. Kamara', referred:'Field officer referral', channel:'WhatsApp', since:'2 Jul 2026', status:'Active borrower', loans:[
         { id:'LN-1042', principal:125000, balance:75000, status:'Active', opened:'12 Jul 2026', purpose:'Market stall — dry goods', payments:[
           { date:'5 Oct 2026', type:'due', label:'Installment due today', amount:25000 },
           { date:'5 Sep 2026', type:'payment', label:'Payment received · Mobile Money', amount:25000 },
@@ -721,7 +1178,7 @@
           { date:'12 Jul 2026', type:'loan', label:'Loan disbursed', amount:125000 }
         ]}
       ]},
-      { id:'m2', name:'James Flomo', community:'Paynesville', initials:'JF', loans:[
+      { id:'m2', name:'James Flomo', community:'Paynesville', memberNo:'SLF-0207', phone:'+231 88X XXX 091', gender:'Male', idType:'Voter ID', idNo:'VID-0093317', livelihood:'Motorbike spare-parts trader', kin:'Esther Flomo · +231 88X XXX 562', officer:'M. Dolo', referred:'Self (returning member)', channel:'SMS', since:'8 Jan 2025', status:'Active borrower', loans:[
         { id:'LN-0988', principal:200000, balance:80000, status:'Active', opened:'20 Mar 2026', purpose:'Motorbike spare-parts trade', payments:[
           { date:'5 Oct 2026', type:'due', label:'Installment due today', amount:40000 },
           { date:'5 Sep 2026', type:'payment', label:'Payment received · Orange Money', amount:40000 },
@@ -733,39 +1190,148 @@
           { date:'10 Jan 2025', type:'loan', label:'Loan disbursed', amount:50000 }
         ]}
       ]},
-      { id:'m3', name:'Patience Weah', community:'Sinkor', initials:'PW', loans:[
+      { id:'m3', name:'Patience Weah', community:'Sinkor', memberNo:'SLF-0455', phone:'+231 77X XXX 552', gender:'Female', idType:'National ID', idNo:'NID-SK-31162', livelihood:'Caterer — cold store', kin:'Alfred Weah · +231 77X XXX 117', officer:'J. Kamara', referred:'Church partner', channel:'WhatsApp', since:'24 Jul 2026', status:'Active borrower', loans:[
         { id:'LN-1101', principal:90000, balance:55500, status:'Active', opened:'1 Aug 2026', purpose:'Catering & cold store', payments:[
           { date:'5 Oct 2026', type:'due', label:'Installment due today', amount:18500 },
           { date:'5 Sep 2026', type:'payment', label:'Payment received · Lonestar MTN', amount:18500 },
           { date:'1 Aug 2026', type:'loan', label:'Loan disbursed', amount:90000 }
         ]}
       ]},
-      { id:'m4', name:'Emmanuel Toe', community:'Barnersville', initials:'ET', loans:[
+      { id:'m4', name:'Emmanuel Toe', community:'Barnersville', memberNo:'SLF-0471', phone:'+231 88X XXX 440', gender:'Male', idType:'National ID', idNo:'NID-BV-11873', livelihood:'Vegetable farmer', kin:'Martha Toe · +231 88X XXX 302', officer:'M. Dolo', referred:'Farmers’ group', channel:'SMS', since:'21 Sep 2026', status:'Active borrower', loans:[
         { id:'LN-0915', principal:150000, balance:150000, status:'Active', opened:'3 Oct 2026', purpose:'Agriculture inputs', payments:[
           { date:'4 Oct 2026', type:'due', label:'First installment overdue', amount:30000 },
           { date:'3 Oct 2026', type:'loan', label:'Loan disbursed', amount:150000 }
         ]}
       ]},
-      { id:'m5', name:'Sarah Garmai', community:'Clara Town', initials:'SG', loans:[
+      { id:'m5', name:'Sarah Garmai', community:'Clara Town', memberNo:'SLF-0388', phone:'+231 55X XXX 318', gender:'Female', idType:'Passport', idNo:'LBR-P0482219', livelihood:'Tailor — shop owner', kin:'Peter Garmai · +231 55X XXX 640', officer:'J. Kamara', referred:'Field officer referral', channel:'WhatsApp', since:'2 Jun 2026', status:'Active borrower', loans:[
         { id:'LN-1077', principal:120000, balance:66000, status:'Active', opened:'15 Jun 2026', purpose:'Tailoring shop expansion', payments:[
           { date:'5 Oct 2026', type:'due', label:'Installment due today', amount:22000 },
           { date:'5 Sep 2026', type:'payment', label:'Payment received · Cash', amount:22000 },
           { date:'15 Jun 2026', type:'loan', label:'Loan disbursed', amount:120000 }
         ]}
       ]},
-      { id:'m6', name:'Hawa Sesay', community:'Sinkor', initials:'HS', loans:[
+      { id:'m6', name:'Hawa Sesay', community:'Sinkor', memberNo:'SLF-0301', phone:'+231 77X XXX 865', gender:'Female', idType:'National ID', idNo:'NID-SK-28840', livelihood:'Fish monger', kin:'Fatu Sesay · +231 77X XXX 233', officer:'J. Kamara', referred:'Women’s market group', channel:'WhatsApp', since:'18 Apr 2026', status:'Active borrower', loans:[
         { id:'LN-1020', principal:80000, balance:20000, status:'Active', opened:'1 May 2026', purpose:'Fish mongering', payments:[
           { date:'1 Sep 2026', type:'payment', label:'Payment received · Mobile Money', amount:20000 },
+          { date:'1 Aug 2026', type:'payment', label:'Payment received · Cash', amount:20000 },
+          { date:'1 Jul 2026', type:'payment', label:'Payment received · Cash', amount:20000 },
           { date:'1 May 2026', type:'loan', label:'Loan disbursed', amount:80000 }
+        ]}
+      ]},
+      { id:'m7', name:'Comfort Massaquoi', community:'West Point', memberNo:'SLF-0366', phone:'+231 77X XXX 701', gender:'Female', idType:'Voter ID', idNo:'VID-0127784', livelihood:'Cook shop owner', kin:'Musa Massaquoi · +231 77X XXX 455', officer:'M. Dolo', referred:'Community chairlady', channel:'WhatsApp', since:'20 May 2026', status:'Active borrower', loans:[
+        { id:'LN-1055', principal:90000, balance:45000, status:'Active', opened:'5 Jun 2026', purpose:'Cook shop — equipment & stock', payments:[
+          { date:'5 Oct 2026', type:'due', label:'Installment due today', amount:15000 },
+          { date:'5 Sep 2026', type:'payment', label:'Payment received · Orange Money', amount:15000 },
+          { date:'5 Aug 2026', type:'payment', label:'Payment received · Orange Money', amount:15000 },
+          { date:'5 Jul 2026', type:'payment', label:'Payment received · Cash', amount:15000 },
+          { date:'5 Jun 2026', type:'loan', label:'Loan disbursed', amount:90000 }
+        ]}
+      ]},
+      { id:'m8', name:'Samuel Deddeh', community:'Paynesville', memberNo:'SLF-0254', phone:'+231 88X XXX 119', gender:'Male', idType:'National ID', idNo:'NID-PV-40021', livelihood:'Charcoal wholesaler', kin:'Ruth Deddeh · +231 88X XXX 774', officer:'M. Dolo', referred:'Self', channel:'SMS', since:'14 Apr 2026', status:'Active borrower', loans:[
+        { id:'LN-0991', principal:175000, balance:35000, status:'Active', opened:'5 May 2026', purpose:'Charcoal wholesale stock', payments:[
+          { date:'5 Oct 2026', type:'due', label:'Final installment due today', amount:35000 },
+          { date:'5 Sep 2026', type:'payment', label:'Payment received · Lonestar MTN', amount:35000 },
+          { date:'5 Aug 2026', type:'payment', label:'Payment received · Lonestar MTN', amount:35000 },
+          { date:'5 Jul 2026', type:'payment', label:'Payment received · Cash', amount:35000 },
+          { date:'5 Jun 2026', type:'payment', label:'Payment received · Cash', amount:35000 },
+          { date:'5 May 2026', type:'loan', label:'Loan disbursed', amount:175000 }
+        ]}
+      ]},
+      { id:'m9', name:'Prince Johnson', community:'Barnersville', memberNo:'SLF-0490', phone:'+231 77X XXX 338', gender:'Male', idType:'Voter ID', idNo:'VID-0150236', livelihood:'Agri-input seller', kin:'Mercy Johnson · +231 77X XXX 019', officer:'J. Kamara', referred:'Farmers’ group', channel:'SMS', since:'1 Sep 2026', status:'Active borrower', loans:[
+        { id:'LN-1120', principal:112000, balance:112000, status:'Active', opened:'8 Sep 2026', purpose:'Agri inputs — seed & fertilizer', payments:[
+          { date:'8 Oct 2026', type:'due', label:'First installment due Thu', amount:28000 },
+          { date:'8 Sep 2026', type:'loan', label:'Loan disbursed', amount:112000 }
+        ]}
+      ]},
+      { id:'m10', name:'Grace Tarpeh', community:'Clara Town', memberNo:'SLF-0421', phone:'+231 55X XXX 906', gender:'Female', idType:'National ID', idNo:'NID-CT-17752', livelihood:'Tailor', kin:'Daniel Tarpeh · +231 55X XXX 287', officer:'M. Dolo', referred:'Field officer referral', channel:'WhatsApp', since:'30 Jun 2026', status:'Active borrower', loans:[
+        { id:'LN-1088', principal:96000, balance:64000, status:'Active', opened:'9 Jul 2026', purpose:'Tailoring — sewing machines', payments:[
+          { date:'9 Oct 2026', type:'due', label:'Installment due Fri', amount:16000 },
+          { date:'9 Sep 2026', type:'payment', label:'Payment received · Cash', amount:16000 },
+          { date:'9 Aug 2026', type:'payment', label:'Payment received · Orange Money', amount:16000 },
+          { date:'9 Jul 2026', type:'loan', label:'Loan disbursed', amount:96000 }
         ]}
       ]}
     ];
 
+    const intakes = [
+      { name:'Musu Togba', community:'Red Light', purpose:'Dry goods stall', date:'5 Oct 2026', status:'New intake', officer:'J. Kamara', phone:'+231 77X XXX 640', gender:'Female', livelihood:'Petty trader', channel:'WhatsApp', referred:'Field officer referral', idType:'National ID', idNo:'NID-RL-33019', kin:'Hawa Togba · +231 77X XXX 118' },
+      { name:'Joseph Mensah', community:'Paynesville', purpose:'Spare parts', date:'4 Oct 2026', status:'Pending verification', officer:'M. Dolo', phone:'+231 88X XXX 207', gender:'Male', livelihood:'Mechanic', channel:'SMS', referred:'Self', idType:'Voter ID', idNo:'VID-0188402', kin:'Abena Mensah · +231 88X XXX 551' },
+      { name:'Fatu Sesay', community:'Sinkor', purpose:'Fish mongering', date:'4 Oct 2026', status:'Eligible for loan screening', officer:'J. Kamara', phone:'+231 77X XXX 233', gender:'Female', livelihood:'Fish monger', channel:'WhatsApp', referred:'Hawa Sesay (member)', idType:'National ID', idNo:'NID-SK-35107', kin:'Hawa Sesay · +231 77X XXX 865' },
+      { name:'Moses Kpoto', community:'Barnersville', purpose:'Agri inputs', date:'3 Oct 2026', status:'Eligible for loan screening', officer:'M. Dolo', phone:'+231 88X XXX 674', gender:'Male', livelihood:'Cassava farmer', channel:'SMS', referred:'Farmers’ group', idType:'None / referred', idNo:'—', kin:'Kebeh Kpoto · +231 88X XXX 090' },
+      { name:'Esther Nyumah', community:'Clara Town', purpose:'Tailoring', date:'2 Oct 2026', status:'Pending verification', officer:'J. Kamara', phone:'+231 55X XXX 412', gender:'Female', livelihood:'Seamstress', channel:'WhatsApp', referred:'Church partner', idType:'National ID', idNo:'NID-CT-20984', kin:'John Nyumah · +231 55X XXX 733' },
+      { name:'Daniel Kpadeh', community:'West Point', purpose:'Catering', date:'1 Oct 2026', status:'Eligible for loan screening', officer:'M. Dolo', phone:'+231 77X XXX 589', gender:'Male', livelihood:'Caterer', channel:'Phone call', referred:'Self', idType:'Voter ID', idNo:'VID-0173350', kin:'Rose Kpadeh · +231 77X XXX 246' }
+    ];
+    let memberSeq = 500;
+    function intakeToMember(it) {
+      return { id:'i' + (memberSeq++), name:it.name, community:it.community, memberNo:'SLF-0' + memberSeq, phone:it.phone || '—', gender:it.gender || '—',
+        idType:it.idType || '—', idNo:it.idNo || '—', livelihood:it.livelihood || '—', kin:it.kin || '—', officer:it.officer || '—',
+        referred:it.referred || '—', channel:it.channel || 'WhatsApp', since:it.date, status:it.status, purpose:it.purpose, loans:[] };
+    }
+    intakes.forEach(it => members.push(intakeToMember(it)));
+
+    const reminders = [
+      { name:'Mary Kollie', community:'Red Light', loan:'LN-1042', amount:25000, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'WhatsApp' },
+      { name:'James Flomo', community:'Paynesville', loan:'LN-0988', amount:40000, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'SMS' },
+      { name:'Patience Weah', community:'Sinkor', loan:'LN-1101', amount:18500, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'WhatsApp' },
+      { name:'Sarah Garmai', community:'Clara Town', loan:'LN-1077', amount:22000, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'WhatsApp' },
+      { name:'Emmanuel Toe', community:'Barnersville', loan:'LN-0915', amount:30000, status:'overdue', label:'1 day overdue', when:'4 Oct 2026', channel:'SMS', overdue:true },
+      { name:'Comfort Massaquoi', community:'West Point', loan:'LN-1055', amount:15000, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'WhatsApp' },
+      { name:'Samuel Deddeh', community:'Paynesville', loan:'LN-0991', amount:35000, status:'due', label:'Pay today', when:'5 Oct 2026', channel:'SMS' }
+    ];
+    const upcoming = [
+      { name:'Hawa Sesay', community:'Sinkor', loan:'LN-1020', amount:20000, when:'Wed 7 Oct', date:'7 Oct 2026', channel:'WhatsApp' },
+      { name:'Prince Johnson', community:'Barnersville', loan:'LN-1120', amount:28000, when:'Thu 8 Oct', date:'8 Oct 2026', channel:'SMS' },
+      { name:'Grace Tarpeh', community:'Clara Town', loan:'LN-1088', amount:16000, when:'Fri 9 Oct', date:'9 Oct 2026', channel:'WhatsApp' }
+    ];
+    const byName = name => members.find(m => m.name === name);
+
+    /* ---------- Registration ---------- */
+    const regForm = document.getElementById('regForm');
+    const regToast = document.getElementById('regToast');
+    const regTableBody = document.getElementById('regTableBody');
+    function statusBadge(status) {
+      if (/eligible/i.test(status)) return '<span class="badge active">Eligible</span>';
+      if (/pending/i.test(status)) return '<span class="badge pending">Pending</span>';
+      return '<span class="badge new">New intake</span>';
+    }
+    function renderIntakes() {
+      const q = (document.getElementById('regSearch').value || '').toLowerCase();
+      regTableBody.innerHTML = intakes
+        .filter(it => (it.name + ' ' + it.community + ' ' + it.purpose).toLowerCase().includes(q))
+        .map(it => `<tr><td>${memberLink(it.name)}</td><td>${escapeHtml(it.community)}</td><td>${escapeHtml(it.purpose)}</td><td>${escapeHtml(it.date)}</td><td>${statusBadge(it.status)}</td></tr>`)
+        .join('');
+    }
+    regForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = id => document.getElementById(id).value.trim();
+      const it = {
+        name: v('fullName'), community: v('community'), purpose: (v('purpose') || '—').slice(0, 32), date: '5 Oct 2026',
+        status: v('status'), officer: v('officer') || ROLES[currentRole || 'officer'].user, phone: v('phone'), gender: v('gender'),
+        livelihood: v('livelihood') || '—', channel: v('channel'), referred: v('referred') || '—', idType: v('idType'), idNo: v('idNumber') || '—', kin: v('kin') || '—'
+      };
+      intakes.unshift(it);
+      members.push(intakeToMember(it));
+      renderIntakes(); renderPeople(document.getElementById('loanSearch').value); fillMemberSelect();
+      addActivity(initialsOf(it.name), `${escapeHtml(it.name)} registered<small>${escapeHtml(it.community)} · ${escapeHtml(it.status)}</small>`, 'Just now');
+      flash(regToast, `Registration saved (sample). ${memberLink(it.name)} added — open the profile.`);
+      regForm.reset();
+    });
+    document.getElementById('regSearch').addEventListener('input', renderIntakes);
+    renderIntakes();
+
+    /* ---------- Activity ---------- */
+    function addActivity(initials, html, time) {
+      const row = document.createElement('div');
+      row.className = 'activity-row';
+      row.innerHTML = `<div class="avatar">${escapeHtml(initials)}</div><div class="txt">${html}</div><div class="time">${escapeHtml(time)}</div>`;
+      document.getElementById('activityList').prepend(row);
+    }
+
+    /* ---------- Loan track record ---------- */
     const personList = document.getElementById('personList');
     const loanDetailBody = document.getElementById('loanDetailBody');
     const loanPersonName = document.getElementById('loanPersonName');
     let selectedId = members[0].id;
-
     function renderPeople(filter = '') {
       const q = filter.toLowerCase();
       personList.innerHTML = '';
@@ -773,17 +1339,21 @@
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'person-item' + (m.id === selectedId ? ' active' : '');
-        btn.innerHTML = `<div class="avatar">${m.initials}</div><div><div class="name">${m.name}</div><div class="meta">${m.community} · ${m.loans.length} loan${m.loans.length > 1 ? 's' : ''}</div></div>`;
+        const n = m.loans.length;
+        btn.innerHTML = `<div class="avatar">${initialsOf(m.name)}</div><div><div class="name">${escapeHtml(m.name)}</div><div class="meta">${escapeHtml(m.community)} · ${n ? n + ' loan' + (n > 1 ? 's' : '') : 'No loans yet'}</div></div>`;
         btn.addEventListener('click', () => { selectedId = m.id; renderPeople(document.getElementById('loanSearch').value); renderLoanDetail(); });
         personList.appendChild(btn);
       });
     }
-
     function renderLoanDetail() {
       const m = members.find(x => x.id === selectedId);
       if (!m) return;
       loanPersonName.textContent = m.name + ' — loan history';
-      let html = '';
+      let html = `<div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.9rem">
+          <button type="button" class="btn btn-secondary btn-sm" data-member="${escapeHtml(m.name)}">View full profile</button>
+          <button type="button" class="btn btn-secondary btn-sm admin-only" data-disburse="${m.id}">Disburse new loan</button>
+        </div>`;
+      if (!m.loans.length) html += `<div class="empty">No loans yet for ${escapeHtml(m.name)} · status: ${escapeHtml(m.status)}.</div>`;
       m.loans.forEach((loan, idx) => {
         const paid = Math.max(0, loan.principal - loan.balance);
         const pct = loan.principal ? Math.round((paid / loan.principal) * 100) : 0;
@@ -792,7 +1362,7 @@
             <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.45rem;margin-bottom:0.7rem">
               <strong style="font-size:0.95rem">${loan.id}</strong>
               <span class="badge ${loan.status === 'Closed' ? 'paid' : 'active'}">${loan.status}</span>
-              <span style="font-size:0.8rem;color:var(--muted)">${loan.purpose}</span>
+              <span style="font-size:0.8rem;color:var(--muted)">${escapeHtml(loan.purpose)}</span>
             </div>
             <div class="loan-summary">
               <div class="mini"><div class="l">Principal</div><div class="v">${fmtLRD(loan.principal)}</div></div>
@@ -806,10 +1376,9 @@
               ${loan.payments.map(p => `
                 <div class="tl-item">
                   <div class="when">${p.date}</div>
-                  <div class="what">${p.label}</div>
+                  <div class="what">${escapeHtml(p.label)}</div>
                   <div class="amt">${p.type === 'loan' ? 'Disbursed: ' : ''}${fmtLRD(p.amount)}</div>
-                </div>
-              `).join('')}
+                </div>`).join('')}
             </div>
           </div>`;
       });
@@ -819,21 +1388,7 @@
     renderPeople();
     renderLoanDetail();
 
-    const reminders = [
-      { name:'Mary Kollie', community:'Red Light', loan:'LN-1042', amount:25000, status:'due', label:'Pay today', phone:'+231 77X XXX 214', channel:'WhatsApp' },
-      { name:'James Flomo', community:'Paynesville', loan:'LN-0988', amount:40000, status:'due', label:'Pay today', phone:'+231 88X XXX 091', channel:'SMS' },
-      { name:'Patience Weah', community:'Sinkor', loan:'LN-1101', amount:18500, status:'due', label:'Pay today', phone:'+231 77X XXX 552', channel:'WhatsApp' },
-      { name:'Sarah Garmai', community:'Clara Town', loan:'LN-1077', amount:22000, status:'due', label:'Pay today', phone:'+231 55X XXX 318', channel:'WhatsApp' },
-      { name:'Emmanuel Toe', community:'Barnersville', loan:'LN-0915', amount:30000, status:'overdue', label:'1 day overdue', phone:'+231 88X XXX 440', channel:'SMS', overdue:true },
-      { name:'Comfort Massaquoi', community:'West Point', loan:'LN-1055', amount:15000, status:'due', label:'Pay today', phone:'+231 77X XXX 701', channel:'WhatsApp' },
-      { name:'Samuel Deddeh', community:'Paynesville', loan:'LN-0991', amount:35000, status:'due', label:'Pay today', phone:'+231 88X XXX 119', channel:'SMS' }
-    ];
-    const upcoming = [
-      { name:'Hawa Sesay', community:'Sinkor', loan:'LN-1020', amount:20000, when:'Wed 7 Oct', channel:'WhatsApp' },
-      { name:'Prince Johnson', community:'Barnersville', loan:'LN-1120', amount:28000, when:'Thu 8 Oct', channel:'SMS' },
-      { name:'Grace Tarpeh', community:'Clara Town', loan:'LN-1088', amount:16000, when:'Fri 9 Oct', channel:'WhatsApp' }
-    ];
-
+    /* ---------- Reminders ---------- */
     const reminderGrid = document.getElementById('reminderGrid');
     reminders.forEach(r => {
       const card = document.createElement('div');
@@ -841,7 +1396,7 @@
       card.innerHTML = `
         <div class="reminder-top">
           <div>
-            <div class="who">${r.name}</div>
+            <div class="who">${memberLink(r.name)}</div>
             <div class="detail">${r.community} · ${r.loan} · ${r.channel}</div>
           </div>
           <span class="badge ${r.status}">${r.label}</span>
@@ -859,11 +1414,11 @@
       card.querySelector('.btn-paid').addEventListener('click', function() {
         card.querySelector('.badge').className = 'badge paid';
         card.querySelector('.badge').textContent = 'Paid';
+        r.paid = true;
         this.textContent = 'Recorded'; this.disabled = true;
       });
       reminderGrid.appendChild(card);
     });
-
     const upcomingGrid = document.getElementById('upcomingGrid');
     upcoming.forEach(u => {
       const card = document.createElement('div');
@@ -871,7 +1426,7 @@
       card.innerHTML = `
         <div class="reminder-top">
           <div>
-            <div class="who">${u.name}</div>
+            <div class="who">${memberLink(u.name)}</div>
             <div class="detail">${u.community} · ${u.loan} · ${u.channel}</div>
           </div>
           <span class="badge pending">${u.when}</span>
@@ -887,12 +1442,248 @@
       card.querySelector('.btn-remind').addEventListener('click', function() { this.textContent = 'Queued'; this.disabled = true; });
       upcomingGrid.appendChild(card);
     });
+    document.getElementById('queueAll').addEventListener('click', () => flash(document.getElementById('toastSend'), null, 3000));
 
-    document.getElementById('queueAll').addEventListener('click', () => {
-      const t = document.getElementById('toastSend');
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3000);
+    /* ---------- Member profile ---------- */
+    const modal = document.getElementById('profileModal');
+    function nextDueFor(m) {
+      const r = reminders.find(x => x.name === m.name && !x.paid);
+      if (r) return { text: fmtLRD(r.amount) + ' · ' + (r.overdue ? 'overdue since ' + r.when : 'today'), loan: r.loan };
+      const u = upcoming.find(x => x.name === m.name);
+      if (u) return { text: fmtLRD(u.amount) + ' · ' + u.when, loan: u.loan };
+      for (const l of m.loans) {
+        if (l.schedule && l.schedule.length) return { text: fmtLRD(l.schedule[0].total) + ' · ' + fmtDate(l.schedule[0].date), loan: l.id };
+      }
+      return null;
+    }
+    function openProfile(name) {
+      const m = byName(name);
+      if (!m) return;
+      const active = m.loans.filter(l => l.status === 'Active');
+      const outstanding = active.reduce((s, l) => s + l.balance, 0);
+      const repaid = m.loans.reduce((s, l) => s + l.payments.filter(p => p.type === 'payment').reduce((a, p) => a + p.amount, 0), 0);
+      const nd = nextDueFor(m);
+      document.getElementById('pfAvatar').textContent = initialsOf(m.name);
+      document.getElementById('pfName').textContent = m.name;
+      document.getElementById('pfSub').innerHTML = `<span>${escapeHtml(m.memberNo)}</span><span>·</span><span>${escapeHtml(m.community)}</span><span>·</span>${m.loans.length ? '<span class="badge active">' + escapeHtml(m.status) + '</span>' : statusBadge(m.status)}`;
+      const payments = [];
+      m.loans.forEach(l => l.payments.forEach(p => payments.push({ ...p, loan: l.id })));
+      const kv = rows => '<dl class="kv">' + rows.map(([k, v]) => `<dt>${k}</dt><dd>${escapeHtml(v)}</dd>`).join('') + '</dl>';
+      document.getElementById('pfBody').innerHTML = `
+        <div class="loan-summary" style="grid-template-columns:repeat(4,1fr)">
+          <div class="mini"><div class="l">Active loans</div><div class="v">${active.length}</div></div>
+          <div class="mini"><div class="l">Outstanding</div><div class="v">${fmtLRD(outstanding)}</div></div>
+          <div class="mini"><div class="l">Total repaid</div><div class="v">${fmtLRD(repaid)}</div></div>
+          <div class="mini"><div class="l">Next due</div><div class="v" style="font-size:0.92rem">${nd ? escapeHtml(nd.text) : '—'}</div></div>
+        </div>
+        <div class="profile-grid">
+          <div class="pf-sec"><h4>Identity</h4>${kv([['Member no.', m.memberNo], ['Gender', m.gender], ['ID type', m.idType], ['ID no.', m.idNo], ['Phone', m.phone], ['Community', m.community]])}</div>
+          <div class="pf-sec"><h4>Registration</h4>${kv([['Registered', m.since], ['Status', m.status], ['Livelihood', m.livelihood], ['Field officer', m.officer], ['Referred by', m.referred], ['Next of kin', m.kin]])}</div>
+          <div class="pf-sec"><h4>Reminder channel</h4>${kv([['Preferred', m.channel], ['Send to', m.phone], ['Send time', '07:00 daily'], ['Next reminder', nd ? nd.loan : 'None scheduled']])}
+            <div style="margin-top:0.7rem"><span class="badge ${m.channel === 'SMS' ? 'pending' : 'active'}">${escapeHtml(m.channel)} reminders on</span></div></div>
+        </div>
+        <div class="pf-h">Loans</div>
+        ${m.loans.length ? `<div style="overflow-x:auto"><table class="num"><thead><tr><th>Loan</th><th>Purpose</th><th>Opened</th><th class="r">Principal</th><th class="r">Balance</th><th>Status</th></tr></thead><tbody>
+          ${m.loans.map(l => `<tr><td><strong>${l.id}</strong></td><td>${escapeHtml(l.purpose)}</td><td>${l.opened}</td><td class="r">${fmtLRD(l.principal)}</td><td class="r">${fmtLRD(l.balance)}</td><td><span class="badge ${l.status === 'Closed' ? 'paid' : 'active'}">${l.status}</span></td></tr>`).join('')}
+          </tbody></table></div>` : `<div class="empty">No loans yet. ${escapeHtml(m.status)} — ${escapeHtml(m.purpose || 'awaiting screening')}.</div>`}
+        <div class="pf-h">Payments &amp; disbursements</div>
+        ${payments.length ? `<div style="overflow-x:auto"><table class="num"><thead><tr><th>Date</th><th>Loan</th><th>Entry</th><th class="r">Amount</th><th>Type</th></tr></thead><tbody>
+          ${payments.map(p => `<tr><td>${p.date}</td><td>${p.loan}</td><td>${escapeHtml(p.label)}</td><td class="r">${fmtLRD(p.amount)}</td><td>${p.type === 'payment' ? '<span class="badge paid">Paid</span>' : p.type === 'loan' ? '<span class="badge active">Disbursed</span>' : '<span class="badge due">Due</span>'}</td></tr>`).join('')}
+          </tbody></table></div>` : '<div class="empty">No payments recorded yet.</div>'}
+        <div class="pf-actions no-print">
+          <button type="button" class="btn btn-primary btn-sm admin-only" data-disburse="${m.id}">Disburse new loan</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-loans="${m.id}">Open loan track record</button>
+          <button type="button" class="btn btn-secondary btn-sm" data-goto="reminders">Go to reminders</button>
+        </div>`;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      modal.scrollTop = 0;
+    }
+    function closeProfile() { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }
+    document.getElementById('pfClose').addEventListener('click', closeProfile);
+    modal.addEventListener('click', e => { if (e.target === modal) closeProfile(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProfile(); });
+    document.getElementById('pfPrint').addEventListener('click', () => { document.body.classList.add('print-profile'); window.print(); });
+    document.addEventListener('click', e => {
+      const ml = e.target.closest('[data-member]');
+      if (ml) { e.preventDefault(); openProfile(ml.dataset.member); return; }
+      const dz = e.target.closest('[data-disburse]');
+      if (dz) { closeProfile(); fillMemberSelect(dz.dataset.disburse); showTab('disburse'); generateSchedule(); window.scrollTo({ top: document.querySelector('nav.tabs').offsetTop - 70, behavior: 'smooth' }); return; }
+      const lz = e.target.closest('[data-loans]');
+      if (lz) { closeProfile(); selectedId = lz.dataset.loans; renderPeople(); renderLoanDetail(); showTab('loans'); }
     });
+
+    /* ---------- Disburse new loan + schedule ---------- */
+    const dMember = document.getElementById('dMember');
+    let loanSeq = 1121;
+    let draft = null;
+    function fillMemberSelect(selId) {
+      const cur = selId || dMember.value;
+      dMember.innerHTML = members.map(m => {
+        const act = m.loans.some(l => l.status === 'Active');
+        return `<option value="${m.id}">${escapeHtml(m.name)} · ${escapeHtml(m.community)}${act ? ' · has active loan' : m.loans.length ? '' : ' · ' + escapeHtml(/eligible/i.test(m.status) ? 'eligible' : m.status.toLowerCase())}</option>`;
+      }).join('');
+      if (cur && members.some(m => m.id === cur)) dMember.value = cur;
+      else { const firstEligible = members.find(m => /eligible/i.test(m.status)); if (firstEligible) dMember.value = firstEligible.id; }
+    }
+    function buildSchedule(P, n, rate, start) {
+      const base = Math.floor(P / n / 50) * 50;
+      const interest = Math.round(P * rate / 100);
+      let rem = P; const rows = [];
+      for (let i = 1; i <= n; i++) {
+        const pp = i === n ? rem : base;
+        rem -= pp;
+        rows.push({ n: i, date: addMonths(start, i), principal: pp, interest, total: pp + interest, balance: rem });
+      }
+      return rows;
+    }
+    function generateSchedule() {
+      const m = members.find(x => x.id === dMember.value);
+      const P = Math.round(Number(document.getElementById('dPrincipal').value));
+      const n = Number(document.getElementById('dTerm').value);
+      const rate = Number(document.getElementById('dRate').value);
+      const purpose = document.getElementById('dPurpose').value.trim() || 'Livelihood loan';
+      const sv = document.getElementById('dStart').value || '2026-10-05';
+      const [y, mo, d] = sv.split('-').map(Number);
+      const start = new Date(y, mo - 1, d);
+      const out = document.getElementById('scheduleBody');
+      if (!m || !P || P < 5000) { out.innerHTML = '<div class="empty">Enter a principal of at least LRD 5,000.</div>'; document.getElementById('confirmDisburse').disabled = true; return; }
+      const rows = buildSchedule(P, n, rate, start);
+      const totalInt = rows.reduce((s, r) => s + r.interest, 0);
+      const totalPay = P + totalInt;
+      const loanId = 'LN-' + loanSeq;
+      draft = { m, P, n, rate, purpose, start, rows, loanId, method: document.getElementById('dMethod').value };
+      out.innerHTML = `
+        <div class="sched-meta"><strong>${loanId}</strong> · ${escapeHtml(m.name)} · ${escapeHtml(purpose)} · disbursed ${fmtDate(start)} via ${escapeHtml(draft.method)}</div>
+        <div class="loan-summary">
+          <div class="mini"><div class="l">Monthly installment</div><div class="v">${fmtLRD(rows[0].total)}</div></div>
+          <div class="mini"><div class="l">Total repayable</div><div class="v">${fmtLRD(totalPay)}</div></div>
+          <div class="mini"><div class="l">Final payment</div><div class="v" style="font-size:0.95rem">${fmtDate(rows[rows.length - 1].date)}</div></div>
+        </div>
+        <div style="overflow-x:auto"><table class="num">
+          <thead><tr><th>#</th><th>Due date</th><th class="r">Principal</th><th class="r">Service charge</th><th class="r">Installment</th><th class="r">Balance after</th></tr></thead>
+          <tbody>
+            ${rows.map(r => `<tr><td>${r.n}</td><td>${fmtDate(r.date)}</td><td class="r">${fmtLRD(r.principal)}</td><td class="r">${fmtLRD(r.interest)}</td><td class="r"><strong>${fmtLRD(r.total)}</strong></td><td class="r">${fmtLRD(r.balance)}</td></tr>`).join('')}
+            <tr class="total"><td colspan="2">Total</td><td class="r">${fmtLRD(P)}</td><td class="r">${fmtLRD(totalInt)}</td><td class="r">${fmtLRD(totalPay)}</td><td class="r">—</td></tr>
+          </tbody>
+        </table></div>
+        <div class="field-hint" style="margin-top:0.6rem">Reminders go out by ${escapeHtml(m.channel)} before each due date. Sample calculation — final terms follow SLFPP policy.</div>`;
+      document.getElementById('confirmDisburse').disabled = false;
+    }
+    document.getElementById('loanForm').addEventListener('submit', e => { e.preventDefault(); generateSchedule(); });
+    ['dMember','dTerm','dRate','dStart','dMethod'].forEach(id => document.getElementById(id).addEventListener('change', generateSchedule));
+    ['dPrincipal','dPurpose'].forEach(id => document.getElementById(id).addEventListener('input', generateSchedule));
+    document.getElementById('confirmDisburse').addEventListener('click', () => {
+      if (!draft) return;
+      const { m, P, purpose, start, rows, loanId, method } = draft;
+      m.loans.unshift({ id: loanId, principal: P, balance: P, status: 'Active', opened: fmtDate(start), purpose, schedule: rows, payments: [
+        { date: fmtDate(rows[0].date), type: 'due', label: 'First installment scheduled', amount: rows[0].total },
+        { date: fmtDate(start), type: 'loan', label: 'Loan disbursed · ' + method, amount: P }
+      ]});
+      m.status = 'Active borrower';
+      loanSeq++;
+      addActivity(initialsOf(m.name), `New loan disbursed — ${escapeHtml(m.name)}<small>${loanId} · ${fmtLRD(P)} · ${rows.length} months</small>`, 'Just now');
+      renderPeople(document.getElementById('loanSearch').value); renderLoanDetail(); fillMemberSelect(m.id);
+      flash(document.getElementById('loanToast'), `${loanId} disbursed to ${memberLink(m.name)} (sample). First installment ${fmtLRD(rows[0].total)} due ${fmtDate(rows[0].date)}.`, 6000);
+      document.getElementById('confirmDisburse').disabled = true;
+      draft = null;
+    });
+    fillMemberSelect();
+    generateSchedule();
+
+    /* ---------- Reports + CSV export ---------- */
+    const collection = [
+      { community:'Paynesville', loans:22, due:340000, collected:322000 },
+      { community:'Sinkor', loans:16, due:248000, collected:236500 },
+      { community:'Red Light', loans:14, due:205000, collected:190000 },
+      { community:'Barnersville', loans:12, due:186000, collected:168000 },
+      { community:'Clara Town', loans:11, due:176000, collected:166000 },
+      { community:'West Point', loans:11, due:165000, collected:158000 }
+    ];
+    const pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
+    function collectionData() {
+      const head = ['Community', 'Active loans', 'Due this month (LRD)', 'Collected (LRD)', 'Outstanding (LRD)', 'Collection rate'];
+      const rows = collection.map(c => [c.community, c.loans, c.due, c.collected, c.due - c.collected, pct(c.collected, c.due)]);
+      const t = collection.reduce((a, c) => ({ loans: a.loans + c.loans, due: a.due + c.due, collected: a.collected + c.collected }), { loans:0, due:0, collected:0 });
+      return { head, rows, total: ['Total', t.loans, t.due, t.collected, t.due - t.collected, pct(t.collected, t.due)] };
+    }
+    function dueData() {
+      const head = ['Member', 'Community', 'Loan', 'Amount (LRD)', 'Due date', 'Status', 'Channel'];
+      const rows = reminders.map(r => [r.name, r.community, r.loan, r.amount, r.when, r.paid ? 'Paid' : r.overdue ? 'Overdue' : 'Due today', r.channel])
+        .concat(upcoming.map(u => [u.name, u.community, u.loan, u.amount, u.date, 'Upcoming', u.channel]));
+      const sum = rows.reduce((s, r) => s + r[3], 0);
+      return { head, rows, total: ['Total', '', rows.length + ' installments', sum, '', '', ''] };
+    }
+    function intakeData() {
+      return { head: ['Name', 'Community', 'Purpose', 'Date', 'Status', 'Field officer', 'Channel'],
+        rows: intakes.map(it => [it.name, it.community, it.purpose, it.date, it.status, it.officer, it.channel]) };
+    }
+    const numCols = { collection: [1, 2, 3, 4], due: [3], intakes: [] };
+    function tableHTML(data, key, linkCol0) {
+      const nc = numCols[key];
+      const cell = (v, i, isTotal) => {
+        const isNum = nc.includes(i);
+        let s = (isNum && typeof v === 'number' && (key !== 'collection' || i > 1)) ? fmtLRD(v) : escapeHtml(v);
+        if (i === 0 && linkCol0 && !isTotal) s = memberLink(v);
+        if (key === 'due' && i === 5 && !isTotal) s = `<span class="badge ${v === 'Overdue' ? 'overdue' : v === 'Paid' ? 'paid' : v === 'Upcoming' ? 'pending' : 'due'}">${escapeHtml(v)}</span>`;
+        if (key === 'intakes' && i === 4) s = statusBadge(v);
+        return `<td${isNum ? ' class="r"' : ''}>${s}</td>`;
+      };
+      return `<thead><tr>${data.head.map((h, i) => `<th${nc.includes(i) ? ' class="r"' : ''}>${escapeHtml(h)}</th>`).join('')}</tr></thead>
+        <tbody>${data.rows.map(r => `<tr>${r.map((v, i) => cell(v, i)).join('')}</tr>`).join('')}
+        ${data.total ? `<tr class="total">${data.total.map((v, i) => cell(v, i, true)).join('')}</tr>` : ''}</tbody>`;
+    }
+    function renderReports() {
+      document.getElementById('tblCollection').innerHTML = tableHTML(collectionData(), 'collection');
+      document.getElementById('tblDue').innerHTML = tableHTML(dueData(), 'due', true);
+      document.getElementById('tblIntakes').innerHTML = tableHTML(intakeData(), 'intakes', true);
+    }
+    function toCSV(rows) {
+      return rows.map(r => r.map(v => {
+        const s = v == null ? '' : String(v);
+        return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }).join(',')).join('\r\n');
+    }
+    function downloadCSV(filename, rows) {
+      const blob = new Blob(['\ufeff' + toCSV(rows)], { type: 'text/csv;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+    }
+    const asRows = d => [d.head, ...d.rows, ...(d.total ? [d.total] : [])];
+    document.querySelectorAll('[data-csv]').forEach(btn => btn.addEventListener('click', () => {
+      const k = btn.dataset.csv;
+      if (k === 'collection') downloadCSV('slfpp-collection-summary-2026-10.csv', asRows(collectionData()));
+      else if (k === 'due') downloadCSV('slfpp-due-list-2026-10-05.csv', asRows(dueData()));
+      else if (k === 'intakes') downloadCSV('slfpp-intakes-2026-10.csv', asRows(intakeData()));
+      else downloadCSV('slfpp-report-2026-10.csv', [
+        ['SLFPP Assistant — Operations report', 'Generated 5 Oct 2026', 'Sample data'], [],
+        ['COLLECTION SUMMARY — OCTOBER 2026'], ...asRows(collectionData()), [],
+        ['DUE LIST'], ...asRows(dueData()), [],
+        ['NEW INTAKES'], ...asRows(intakeData())
+      ]);
+    }));
+    document.getElementById('printReports').addEventListener('click', () => {
+      renderReports();
+      document.body.classList.add('print-reports');
+      window.print();
+    });
+    window.addEventListener('afterprint', () => document.body.classList.remove('print-reports', 'print-profile'));
+    renderReports();
+
+    /* ---------- Settings ---------- */
+    document.getElementById('settingsForm').addEventListener('submit', e => { e.preventDefault(); flash(document.getElementById('settingsToast'), null, 3000); });
+
+    /* ---------- Restore session / ?role= ---------- */
+    (function initRole() {
+      let r = null;
+      try { r = new URLSearchParams(location.search).get('role'); } catch (e) {}
+      if (!ROLES[r]) { try { r = sessionStorage.getItem('slfpp_role'); } catch (e) {} }
+      if (ROLES[r]) signIn(r);
+    })();
   </script>
 </body>
 </html>
