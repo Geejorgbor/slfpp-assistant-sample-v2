@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SLFPP Assistant · Proposal · Payeconnect</title>
-  <meta name="description" content="Proposal for a custom staff operations system for Society For Less Fortunate People Project (SLFPP), prepared by Payeconnect." />
+  <meta name="description" content="Proposal for Society For Less Fortunate People Project (SLFPP): the complete loan management system included now, plus the roadmap — accounting, billables and WhatsApp/SMS messages to clients. Prepared by Payeconnect." />
   <meta name="theme-color" content="#0b1626" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -144,6 +144,61 @@
     .foot-in a{color:var(--muted);text-decoration:none;font-weight:500}
     .foot-in a:hover{color:var(--primary)}
 
+    /* At a glance */
+    .pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.22rem .6rem;line-height:1.3;white-space:nowrap}
+    .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+    .pill-now{color:#0a6b5e;background:var(--primary-soft);border:1px solid var(--primary-line)}
+    .pill-next{color:#8a5a00;background:#fdf6e7;border:1px solid #f3dfae}
+    .glance{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:1rem;margin-top:1.5rem}
+    .gl{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .gl.next{border-style:dashed;border-color:#e3cf9f;background:linear-gradient(180deg,#fffcf5,#fff 40%)}
+    .gl-head{padding:1.25rem 1.4rem 1rem;border-bottom:1px solid var(--border)}
+    .gl.next .gl-head{border-bottom-color:#f1e4c3}
+    .gl-head h3{font-family:var(--display);font-weight:500;font-size:1.3rem;color:var(--heading);letter-spacing:-.015em;margin:.6rem 0 .15rem;line-height:1.2}
+    .gl-head p{font-size:.8rem;color:var(--subtle)}
+    .gl ul{list-style:none;padding:.9rem 1.4rem 1.1rem;display:grid;gap:0}
+    .gl li{font-size:.87rem;color:var(--text);padding:.42rem 0 .42rem 1.75rem;position:relative;border-bottom:1px solid #f0f2f5;line-height:1.45}
+    .gl li:last-child{border-bottom:none}
+    .gl.now li::before{content:"";position:absolute;left:0;top:.55rem;width:16px;height:16px;border-radius:50%;background:var(--primary-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 24 24' fill='none' stroke='%230c7a6b' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") no-repeat center}
+    .gl.next li{border-bottom-color:#f6eedb;padding-top:.6rem;padding-bottom:.6rem}
+    .gl.next li::before{content:"";position:absolute;left:0;top:.72rem;width:16px;height:16px;border-radius:50%;background:#fdf6e7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23a06a00' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E") no-repeat center;border:1px solid #f3dfae}
+    .gl-note{margin:auto 1.4rem 1.25rem;padding:.8rem .95rem;border-radius:10px;background:#fdf8ec;border:1px solid #f3e6c6;font-size:.8rem;color:#6b5a33;line-height:1.5}
+
+    /* Inventory */
+    .inv{margin-top:1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+    .inv-h{display:flex;align-items:center;gap:.65rem;padding:.75rem 1.15rem;background:var(--surface-2);border-bottom:1px solid var(--border);font-weight:650;font-size:.9rem;color:var(--heading);letter-spacing:-.005em}
+    .inv-n{width:24px;height:24px;border-radius:7px;background:var(--ink);color:#fff;font-size:.72rem;font-weight:650;display:grid;place-items:center}
+    .inv-row{display:grid;grid-template-columns:170px minmax(0,1fr) 150px;gap:1rem;padding:.8rem 1.15rem;border-bottom:1px solid #f0f2f5;align-items:start}
+    .inv-row:last-child{border-bottom:none}
+    .inv-t{font-weight:600;font-size:.88rem;color:var(--heading);line-height:1.4}
+    .inv-d{font-size:.85rem;color:var(--muted);line-height:1.55}
+    .inv-d em{color:#8a5a00;font-style:normal}
+    .inv-w{font-size:.74rem;color:var(--primary);font-weight:600;text-align:right;line-height:1.4;padding-top:.1rem}
+    .inv-w::before{content:"In demo · ";color:var(--subtle);font-weight:500}
+
+    /* Roadmap */
+    .road{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+    .road-card{background:var(--surface);border:1px dashed #e3cf9f;border-radius:14px;padding:1.3rem 1.35rem;box-shadow:var(--shadow)}
+    .road-card.feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);column-gap:1.5rem;background:linear-gradient(135deg,#fffcf5,#fff 55%)}
+    .road-card.feature > :not(.phone){grid-column:1}
+    .road-card.feature .road-top{grid-column:1/-1}
+    .road-card.feature .phone{grid-column:2;grid-row:2/span 4;align-self:center}
+    .road-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.85rem}
+    .road-card .ic{width:36px;height:36px;border-radius:10px;background:#fdf6e7;color:#a06a00;border:1px solid #f3dfae;display:grid;place-items:center}
+    .road-card .ic svg{width:18px;height:18px}
+    .road-card h3{font-family:var(--display);font-weight:500;font-size:1.3rem;color:var(--heading);letter-spacing:-.015em;line-height:1.2}
+    .road-sub{font-size:.84rem;color:var(--subtle);margin:.2rem 0 .6rem}
+    .road-card ul{list-style:none;display:grid;gap:0}
+    .road-card li{font-size:.85rem;color:var(--muted);padding:.36rem 0 .36rem 1.1rem;position:relative;line-height:1.5}
+    .road-card li::before{content:"";position:absolute;left:0;top:.82rem;width:6px;height:6px;border-radius:50%;background:#d9b25c}
+    .phone{background:#0b1626;border-radius:22px;padding:.85rem .8rem 1rem;box-shadow:0 18px 40px -18px rgba(11,20,36,.5),inset 0 0 0 1px rgba(255,255,255,.06);max-width:330px;width:100%;justify-self:center}
+    .phone-h{font-size:.75rem;font-weight:600;color:#e8edf3;padding:.1rem .35rem .65rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:.7rem;display:flex;justify-content:space-between;gap:.5rem}
+    .phone-h span{color:#6d7d93;font-weight:500}
+    .bubble{background:#1c2a3e;color:#dbe3ec;font-size:.8rem;line-height:1.5;padding:.6rem .75rem;border-radius:12px 12px 12px 4px;max-width:92%;margin-bottom:.5rem}
+    .bubble b{color:#fff}
+    .bubble.out{background:#0c7a6b;color:#eafaf6;margin-left:auto;border-radius:12px 12px 4px 12px;margin-bottom:0}
+    .road-note{margin-top:1rem;padding:.95rem 1.15rem;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:.85rem;color:var(--muted);line-height:1.55;max-width:none}
+
     @media (max-width:960px){
       .layout{grid-template-columns:1fr;gap:0;padding-top:2rem}
       .toc{display:none}
@@ -154,6 +209,11 @@
       .outcomes div:nth-last-child(-n+1){border-bottom:none}
       .engage{grid-template-columns:1fr 1fr}
       .scope{grid-template-columns:1fr}
+      .glance{grid-template-columns:1fr}
+      .inv-row{grid-template-columns:150px minmax(0,1fr)}
+      .inv-w{grid-column:2;text-align:left;padding-top:0}
+      .road-card.feature{grid-template-columns:1fr}
+      .road-card.feature .phone{grid-column:1;grid-row:auto;margin-top:1rem}
     }
     @media (max-width:640px){
       body{font-size:14.5px}
@@ -173,13 +233,17 @@
       .outcomes div{border-right:none !important;border-bottom:1px solid var(--border) !important}
       .outcomes div:last-child{border-bottom:none !important}
       .final{padding:1.5rem 1.25rem}
+      .road{grid-template-columns:1fr}
+      .inv-row{grid-template-columns:1fr;gap:.3rem}
+      .inv-w{grid-column:1}
     }
     @media print{
       .nav,.toc,.cta,.nav-actions{display:none !important}
       .layout{display:block;padding:1.5rem 0}
       body{background:#fff}
       .cover,.scope-head,.final{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-      section.sec{break-inside:avoid-page}
+      section.sec{break-inside:auto}
+      .inv,.road-card,.gl{break-inside:avoid}
     }
   </style>
 </head>
@@ -202,12 +266,12 @@
     <div class="cover-in">
       <div class="eyebrow">Proposal · Custom loan management system</div>
       <h1>Give SLFPP a system worthy of the <em>trust</em> people place in the program.</h1>
-      <p class="lead">When registration, loan history and installment days live in notebooks or chat threads, payments are missed and credibility suffers. This proposal offers a complete loan management system — built once for Society For Less Fortunate People Project — with branches, loan products, borrower profiles, automatic repayment schedules, approvals and flexible collections, so Lawrence’s team always knows who came in, who owes what, and who should pay today.</p>
+      <p class="lead">When registration, loan history and installment days live in notebooks or chat threads, payments are missed and credibility suffers. This proposal sets out the complete loan management system <strong style="color:#e8edf3;font-weight:600">included now</strong> — staff roles, branches, loan products, borrower profiles, automatic schedules, approvals and flexible collections — and the <strong style="color:#e8edf3;font-weight:600">roadmap</strong> Lawrence asked for: accounting, billables and messages to clients’ phones.</p>
       <div class="cover-meta">
         <div><small>Prepared for</small><b>Lawrence · SLFPP</b></div>
         <div><small>Prepared by</small><b>Payeconnect</b></div>
         <div><small>Location</small><b>Monrovia, Liberia</b></div>
-        <div><small>Status</small><b>Confidential sample</b></div>
+        <div><small>Scope</small><b>Included now + roadmap</b></div>
       </div>
       <div class="cta">
         <a class="btn btn-primary" href="index.html">Open the interactive demo</a>
@@ -220,15 +284,15 @@
     <aside class="toc" aria-label="Contents">
       <div class="eyebrow">Contents</div>
       <ol>
-        <li><a href="#about"><span>01</span>About Payeconnect</a></li>
+        <li><a href="#about"><span>01</span>About this proposal</a></li>
         <li><a href="#context"><span>02</span>How SLFPP works</a></li>
-        <li><a href="#modules"><span>03</span>System structure</a></li>
-        <li><a href="#lifecycle"><span>04</span>Loan lifecycle</a></li>
-        <li><a href="#controls"><span>05</span>Controls &amp; reporting</a></li>
-        <li><a href="#outcomes"><span>06</span>What changes</a></li>
-        <li><a href="#routine"><span>07</span>Daily routine</a></li>
-        <li><a href="#scope"><span>08</span>What’s included</a></li>
-        <li><a href="#future"><span>09</span>Coming next</a></li>
+        <li><a href="#glance"><span>03</span>At a glance</a></li>
+        <li><a href="#now"><span>04</span>Included now</a></li>
+        <li><a href="#lifecycle"><span>05</span>Loan lifecycle</a></li>
+        <li><a href="#routine"><span>06</span>Daily routine</a></li>
+        <li><a href="#outcomes"><span>07</span>What changes</a></li>
+        <li><a href="#future"><span>08</span>Coming next</a></li>
+        <li><a href="#review"><span>09</span>How to review</a></li>
         <li><a href="#next"><span>10</span>Next step</a></li>
       </ol>
       <div class="toc-cta">
@@ -241,9 +305,9 @@
     <main>
       <section class="sec" id="about">
         <div class="sec-num">01 · About</div>
-        <h2>The business behind this offer</h2>
+        <h2>What this proposal covers</h2>
         <p><strong>Payeconnect</strong> designs practical systems for organizations that need reliable day-to-day operations — not bloated platforms. This proposal is prepared for <strong>Lawrence</strong> and <strong>Society For Less Fortunate People Project (SLFPP)</strong>.</p>
-        <p>It describes a full custom <strong>loan management system</strong> for SLFPP: branches, loan products, borrower profiles, loans with initial deposits and automatic repayment schedules, approvals, due lists and flexible repayments. Pricing is quoted separately on WhatsApp after you review the sample, and a free demo is available before any commitment.</p>
+        <p>It is written in two clear parts: <strong>what is included now</strong> — the complete loan management system you can already click through in the sample — and <strong>what comes next</strong>, the items you also asked for: <strong>Accounting</strong>, <strong>Billables</strong> and <strong>messages to clients on their phones</strong> (WhatsApp / SMS reminders and collections). Pricing is quoted separately on WhatsApp after you review, and a free live demo is available before any commitment.</p>
       </section>
 
       <section class="sec" id="context">
@@ -255,51 +319,120 @@
           <div><div class="n">Step 1</div><div class="l">Register borrower</div><div class="d">Full profile, ID &amp; documents, branch</div></div>
           <div><div class="n">Step 2</div><div class="l">Loan on a product</div><div class="d">Item value, deposit, period → installment</div></div>
           <div><div class="n">Step 3</div><div class="l">Approve &amp; disburse</div><div class="d">Schedule generated automatically</div></div>
-          <div><div class="n">Step 4</div><div class="l">Collect &amp; remind</div><div class="d">Due views, receipts, WhatsApp / SMS</div></div>
+          <div><div class="n">Step 4</div><div class="l">Collect &amp; follow up</div><div class="d">Due lists, receipts, reminder queue</div></div>
         </div>
       </section>
 
-      <section class="sec" id="modules">
-        <div class="sec-num">03 · System structure</div>
-        <h2>A complete loan management system — module by module</h2>
-        <div class="grid g3">
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><div class="t">Branches</div><p>A Main Branch plus satellite offices (e.g. Red Light, Sinkor &amp; West Point). Borrowers, loans, staff and collections belong to a branch; switch branch to scope the whole workspace. Add branches as SLFPP grows.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="t">Loan products</div><p>Category, amount range, duration in weeks or months, simple interest (including 0% welfare loans), repayment cycle — weekly, monthly or custom every N days — optional fees, late penalties and required deposit.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></div><div class="t">Registration &amp; borrowers</div><p>Walk-in intake through verification to eligibility, then a full borrower profile: date of birth, gender, ID and tax number, employment, business, monthly income, next of kin, documents checklist and uploads.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></div><div class="t">Loans</div><p>Borrower + product, item / principal value, <strong>initial deposit</strong>, period — the installment is calculated automatically, with interest and fees on the actual principal financed. Collateral note and photo, approver notes.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div class="t">Approval &amp; schedule</div><p>Status moves <strong>Processing → Approved → Active → Closed</strong>. Approval generates the full payment schedule — every due date with principal, interest and fee split — stored on the loan.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div class="t">Due payments</div><p>Every unpaid installment across all schedules, filtered: <strong>All · Overdue · Due today · Next 3 days · This week · This month</strong> — with penalties, branch, channel and one-click collect.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="t">Flexible repayments</div><p>Select one or several unpaid installments, pay ahead, choose cash or mobile money, record receipt and reference, collector and note. Paid weeks lock; loan and portfolio percentages update instantly. Printable receipts.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><div class="t">Reminders &amp; track record</div><p>Morning reminder queue built from live schedules on each borrower’s WhatsApp / SMS channel; full loan history per borrower with timeline from application to final payment.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><div class="t">Dashboard &amp; reports</div><p>Live portfolio numbers, repaid % by branch, portfolio at risk, collections by receipt, due lists and intakes — print for the board or export CSV.</p></div>
+      <section class="sec" id="glance">
+        <div class="sec-num">03 · At a glance</div>
+        <h2>Everything in the system now — and what comes next</h2>
+        <p>The left column is built and working in the interactive sample today. The right column is the roadmap you asked for, delivered as the next phase on the same data.</p>
+        <div class="glance">
+          <div class="gl now">
+            <div class="gl-head"><span class="pill pill-now">Included now</span><h3>Loan management system</h3><p>Live in the sample · sign in and try every item</p></div>
+            <ul>
+              <li>Staff login &amp; roles — Admin, Branch Manager, Field Officer, custom roles</li>
+              <li>Multi-branch workspace with branch scoping</li>
+              <li>Loan products — ranges, terms, interest, cycles, fees, penalties, deposit</li>
+              <li>Incoming registration &amp; full borrower / member profiles</li>
+              <li>Loans — item value, initial deposit, automatic calculation</li>
+              <li>Lifecycle — Processing → Approved → Active → Closed</li>
+              <li>Approve &amp; Disburse queue with automatic schedules</li>
+              <li>Due Payments — overdue, today, 3 days, week, month</li>
+              <li>Flexible multi-installment repayments &amp; printable receipts</li>
+              <li>Payment Reminders queue &amp; Loan Track Record</li>
+              <li>Live dashboard · reports to print &amp; CSV</li>
+            </ul>
+          </div>
+          <div class="gl next">
+            <div class="gl-head"><span class="pill pill-next">Coming next · roadmap</span><h3>Phase 2 on the same loan book</h3><p>Previewed in the sample · not live yet</p></div>
+            <ul>
+              <li><strong>Accounting</strong> — chart of accounts, automatic journals, cash book, trial balance, P&amp;L</li>
+              <li><strong>Billables</strong> — membership &amp; program fees, invoices, member statements, donor tracking</li>
+              <li><strong>Messages to clients’ phones</strong> — automatic WhatsApp / SMS reminders, receipts and collection follow-ups</li>
+            </ul>
+            <div class="gl-note">These build directly on data the system already records — every disbursement, repayment, fee, penalty and phone number — so nothing is typed twice.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="now">
+        <div class="sec-num">04 · Included now</div>
+        <h2>The complete system, module by module</h2>
+        <p>Every item below is working in the interactive sample. The right-hand column shows where to find it in the demo.</p>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">A</span>Access &amp; control</div>
+          <div class="inv-row"><div class="inv-t">Staff login</div><div class="inv-d">Each staff member signs in with a personal Staff ID and PIN, assigned to a branch. Every action — registration, approval, repayment — is tied to a named account.</div><div class="inv-w">Sign-in screen</div></div>
+          <div class="inv-row"><div class="inv-t">Roles</div><div class="inv-d"><strong>Admin</strong> — all branches, loan products, approvals, reports, settings. <strong>Branch Manager</strong> — approves, disburses and reports for one branch. <strong>Field Officer</strong> — registers borrowers, prepares loans, collects repayments.</div><div class="inv-w">Switch role</div></div>
+          <div class="inv-row"><div class="inv-t">Custom roles</div><div class="inv-d">Create new roles (e.g. Cashier, Auditor) and choose exactly which screens and actions they can use. Branch Manager itself is a custom role.</div><div class="inv-w">Settings &amp; Roles</div></div>
+          <div class="inv-row"><div class="inv-t">Built-in controls</div><div class="inv-d">Approval required before disbursement, deposit and amount-range checks per product, locked paid installments, branch-scoped access.</div><div class="inv-w">Throughout</div></div>
+        </div>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">B</span>Organization setup</div>
+          <div class="inv-row"><div class="inv-t">Multi-branch</div><div class="inv-d">Main Branch plus satellite offices (Red Light Office, Sinkor &amp; West Point Desk). Borrowers, loans, staff and collections belong to a branch; switch branch to scope the whole workspace. Add branches as SLFPP grows.</div><div class="inv-w">Branches · branch picker</div></div>
+          <div class="inv-row"><div class="inv-t">Loan products</div><div class="inv-d">Category, amount range, duration in weeks or months, simple interest (including 0% welfare loans), repayment cycle — weekly, monthly or every N days — optional fees, late penalties and required deposit.</div><div class="inv-w">Loan Products</div></div>
+          <div class="inv-row"><div class="inv-t">Settings</div><div class="inv-d">Organization defaults, reminder rules and default channel, staff accounts by branch, role permissions.</div><div class="inv-w">Settings &amp; Roles</div></div>
+        </div>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">C</span>Borrowers &amp; members</div>
+          <div class="inv-row"><div class="inv-t">Incoming registration</div><div class="inv-d">Quick walk-in intake (community, phone, reason for coming in, preferred reminder channel), then <strong>New intake → Pending verification → Eligible</strong>. Eligible people appear in the new-loan form.</div><div class="inv-w">Incoming Registration</div></div>
+          <div class="inv-row"><div class="inv-t">Full borrower profiles</div><div class="inv-d">Date of birth, gender, ID type and number, tax ID, employment, business, monthly income, next of kin, documents checklist (ID, photo, permit, guarantor form) and scanned uploads.</div><div class="inv-w">Borrowers</div></div>
+          <div class="inv-row"><div class="inv-t">Member profiles</div><div class="inv-d">One click on any name opens the member’s complete file — personal details, every loan, schedule, receipts, amount repaid and next payment — printable for files or meetings.</div><div class="inv-w">Click any borrower name</div></div>
+        </div>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">D</span>Loans</div>
+          <div class="inv-row"><div class="inv-t">Create a loan</div><div class="inv-d">Borrower + product, item / principal value, <strong>initial deposit</strong> and period. The system calculates principal financed, interest, fees, total repayable and the installment automatically. Collateral note and photo.</div><div class="inv-w">Loans → New loan</div></div>
+          <div class="inv-row"><div class="inv-t">Lifecycle</div><div class="inv-d">Every loan moves <strong>Processing → Approved → Active → Closed</strong>, with names, dates and approver notes recorded at each step.</div><div class="inv-w">Loans · loan statement</div></div>
+          <div class="inv-row"><div class="inv-t">Approve &amp; Disburse queue</div><div class="inv-d">Loans waiting for approval and approved loans ready to pay out, with a count in the menu. Approving generates the schedule; disbursement by cash, Orange Money, Lonestar MTN MoMo, bank transfer or direct supplier payment.</div><div class="inv-w">Approve &amp; Disburse</div></div>
+          <div class="inv-row"><div class="inv-t">Repayment schedules</div><div class="inv-d">Every due date with the principal, interest and fee split, stored on the loan and shown as paid / unpaid.</div><div class="inv-w">Loan statement</div></div>
+          <div class="inv-row"><div class="inv-t">Loan Track Record</div><div class="inv-d">Each borrower’s full loan history — including closed loans — with percent repaid and a timeline from application to final payment.</div><div class="inv-w">Loan Track Record</div></div>
+        </div>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">E</span>Collections</div>
+          <div class="inv-row"><div class="inv-t">Due Payments buckets</div><div class="inv-d">Every unpaid installment across all schedules: <strong>All · Overdue · Due today · Next 3 days · This week · This month</strong> — with penalties, branch, phone, preferred channel, one-click collect and CSV export.</div><div class="inv-w">Due Payments</div></div>
+          <div class="inv-row"><div class="inv-t">Flexible repayments</div><div class="inv-d">Pay one or several installments at once, or pay ahead. Cash or mobile money, reference number, collector and note. Paid installments lock; loan and portfolio percentages update instantly.</div><div class="inv-w">Repayments</div></div>
+          <div class="inv-row"><div class="inv-t">Receipts</div><div class="inv-d">Every repayment gets a numbered receipt that can be printed and handed to the borrower.</div><div class="inv-w">Repayments → Print receipt</div></div>
+          <div class="inv-row"><div class="inv-t">Payment Reminders</div><div class="inv-d">A morning follow-up queue built from live schedules — overdue first, then due today, then upcoming this week — showing each borrower’s preferred channel so staff know who to contact and mark them as queued. <em>(Automatic delivery to phones is the roadmap item in section 08.)</em></div><div class="inv-w">Payment Reminders</div></div>
+        </div>
+
+        <div class="inv">
+          <div class="inv-h"><span class="inv-n">F</span>Oversight &amp; reporting</div>
+          <div class="inv-row"><div class="inv-t">Dashboard</div><div class="inv-d">Live portfolio numbers, repaid % by branch, due today &amp; overdue, recent activity, each role’s focus for today, and the loan book by product — all recalculated the moment a payment is recorded.</div><div class="inv-w">Dashboard</div></div>
+          <div class="inv-row"><div class="inv-t">Reports — print &amp; CSV</div><div class="inv-d">Portfolio by branch and by product, portfolio at risk, collections by receipt, due list and new intakes. Print for the monthly board meeting or export CSV for Excel and partners. Borrower list and loan register also export to CSV.</div><div class="inv-w">Reports</div></div>
         </div>
       </section>
 
       <section class="sec" id="lifecycle">
-        <div class="sec-num">04 · Loan lifecycle</div>
+        <div class="sec-num">05 · Loan lifecycle</div>
         <h2>From application to final payment — every step recorded</h2>
         <ol class="steps">
           <li><div><strong>Create</strong> — a field officer picks the borrower and product, enters item value (e.g. a sewing machine at LRD 140,000) and initial deposit (LRD 20,000). The system shows principal financed, interest, fees, total repayable and the installment. Status: <strong>Processing</strong>.</div></li>
-          <li><div><strong>Review &amp; approve</strong> — Admin or Branch Manager checks documents, income vs installment and other loans, then approves. The full schedule is generated automatically.</div></li>
+          <li><div><strong>Review &amp; approve</strong> — Admin or Branch Manager checks documents, income vs installment and other loans, then approves. The full schedule is generated automatically. Status: <strong>Approved</strong>.</div></li>
           <li><div><strong>Disburse</strong> — cash, mobile money, bank or direct supplier payment for items. The loan becomes <strong>Active</strong> and the first installment appears in Due Payments and Reminders.</div></li>
           <li><div><strong>Collect</strong> — staff record repayments against one or many installments, including paying ahead, with receipt, reference, collector and note. Late penalties apply per product rules.</div></li>
           <li><div><strong>Close</strong> — when the last installment is paid the loan closes automatically and stays in the borrower’s track record.</div></li>
         </ol>
       </section>
 
-      <section class="sec" id="controls">
-        <div class="sec-num">05 · Controls &amp; reporting</div>
-        <h2>Role-based access, branch scoping and board-ready reports</h2>
-        <div class="grid g2">
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="t">Staff login &amp; roles</div><p><strong>Admin</strong> sees all branches, products, approvals, reports and settings. <strong>Branch Manager</strong> (a custom role) approves and disburses for one branch. <strong>Field Officers</strong> register borrowers, prepare loans and collect. More custom roles (e.g. Cashier) can be created.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/></svg></div><div class="t">Built-in controls</div><p>Approval required before disbursement, locked paid installments, deposit and amount-range checks per product, and every action tied to a named staff account and branch.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div><div class="t">Borrower &amp; loan records</div><p>One click opens the full borrower profile or loan statement — terms, lifecycle, collateral, schedule, receipts — printable for files or meetings.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div><div class="t">Printable reports &amp; CSV</div><p>Portfolio by branch and product, portfolio at risk, collections by receipt, due list and new intakes — print for the monthly board meeting or export CSV for partners.</p></div>
-        </div>
+      <section class="sec" id="routine">
+        <div class="sec-num">06 · Daily routine</div>
+        <h2>How staff run collections each morning</h2>
+        <ol class="steps">
+          <li><div><strong>Open Due Payments</strong> — start with <em>Overdue</em> (e.g. Korto Mulbah, LN-1095, 6 days late with LRD 500 penalty), then <em>Due today</em>.</div></li>
+          <li><div><strong>Work the reminder queue</strong> — contact each borrower on their preferred channel (WhatsApp, SMS or call) and mark them queued.</div></li>
+          <li><div><strong>Record repayments</strong> — select installments (or pay ahead), method, mobile money reference, receipt.</div></li>
+          <li><div><strong>Check this week</strong> — plan the 3-day and weekly lists so market-day collections are not rushed.</div></li>
+          <li><div><strong>Supervisor review</strong> — dashboard shows collected today, repaid % by branch and loans waiting for approval.</div></li>
+        </ol>
       </section>
 
       <section class="sec" id="outcomes">
-        <div class="sec-num">06 · Outcomes</div>
+        <div class="sec-num">07 · Outcomes</div>
         <h2>What changes for SLFPP</h2>
         <div class="outcomes">
           <div><strong>Fewer missed payments</strong>Overdue, today, 3-day and weekly dues visible every morning</div>
@@ -310,66 +443,83 @@
           <div><strong>Trustworthy receipts</strong>Every repayment receipted, locked and attributed to a collector</div>
           <div><strong>Branch visibility</strong>Each office’s portfolio, collections and risk side by side</div>
           <div><strong>Board-ready reporting</strong>Print or export in seconds</div>
-          <div><strong>Ready to grow</strong>New branches, products, roles — and accounting next</div>
-        </div>
-      </section>
-
-      <section class="sec" id="routine">
-        <div class="sec-num">07 · Daily routine</div>
-        <h2>How staff run collections each morning</h2>
-        <ol class="steps">
-          <li><div><strong>Open Due Payments</strong> — start with <em>Overdue</em> (e.g. Korto Mulbah, LN-1095, 6 days late with LRD 500 penalty), then <em>Due today</em>.</div></li>
-          <li><div><strong>Queue reminders</strong> — WhatsApp or SMS on each borrower’s preferred channel.</div></li>
-          <li><div><strong>Record repayments</strong> — select installments (or pay ahead), method, mobile money reference, receipt.</div></li>
-          <li><div><strong>Check this week</strong> — plan the 3-day and weekly lists so market-day collections are not rushed.</div></li>
-          <li><div><strong>Supervisor review</strong> — dashboard shows collected today, repaid % by branch and loans waiting for approval.</div></li>
-        </ol>
-      </section>
-
-      <section class="sec" id="scope">
-        <div class="sec-num">08 · Scope</div>
-        <h2>What’s included in the system</h2>
-        <p>Everything staff need to run SLFPP’s loan book day to day — quote provided separately after you review.</p>
-        <div class="scope">
-          <div class="scope-head">
-            <div class="eyebrow">Custom build for SLFPP</div>
-            <h3>Full loan management system</h3>
-            <p>Society For Less Fortunate People Project · Payeconnect. Fitted to SLFPP’s branches, communities, LRD amounts, mobile money and WhatsApp/SMS follow-up.</p>
-            <div class="quote-note"><b>Quote on WhatsApp</b> after sample review · free demo before you decide.</div>
-          </div>
-          <ul>
-            <li>Multi-branch workspace (Main + satellite offices)</li>
-            <li>Loan products: ranges, weeks/months, 0%+ interest, cycles, fees, penalties</li>
-            <li>Registration + full borrower profiles &amp; documents</li>
-            <li>Loans with item value, initial deposit &amp; auto installments</li>
-            <li>Approval → automatic schedule → disbursement</li>
-            <li>Due views: all, overdue, today, 3 days, week, month</li>
-            <li>Flexible repayments, receipts, locked paid installments</li>
-            <li>Reminders, loan track record, dashboard</li>
-            <li>Reports, print &amp; CSV · Admin / Branch Manager / Officer roles</li>
-          </ul>
+          <div><strong>Ready to grow</strong>Accounting, billables and phone messaging next</div>
         </div>
       </section>
 
       <section class="sec" id="future">
-        <div class="sec-num">09 · Coming next</div>
-        <h2>Accounting &amp; billables — on the same loan book</h2>
-        <p>Once the loan management core is live, SLFPP can add a second phase. Because every disbursement, repayment, fee and penalty is already recorded, these modules build on real data instead of re-typing it.</p>
-        <div class="grid g2">
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg></div><div class="t">Accounting <span style="font-size:.7rem;font-weight:600;color:#8a5a00;background:#fdf6e7;border:1px solid #f3dfae;border-radius:999px;padding:.05rem .45rem;margin-left:.3rem;vertical-align:2px">Coming</span></div><p>Chart of accounts, automatic journal entries from loan activity, cash book and mobile money reconciliation per collector, income &amp; expenses by branch, trial balance and P&amp;L for the board.</p></div>
-          <div class="feat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/></svg></div><div class="t">Billables <span style="font-size:.7rem;font-weight:600;color:#8a5a00;background:#fdf6e7;border:1px solid #f3dfae;border-radius:999px;padding:.05rem .45rem;margin-left:.3rem;vertical-align:2px">Coming</span></div><p>Membership and registration fees, training and program fees, invoices and member statements shared by WhatsApp, and partner / donor contributions tracked against the programs they fund.</p></div>
+        <div class="sec-num">08 · Coming next · roadmap</div>
+        <h2>Accounting, billables and messages to clients’ phones</h2>
+        <p>These are the items you also asked for. They are <strong>planned as the next phase</strong> — previewed in the sample, not switched on yet. Because the loan system already records every disbursement, repayment, fee, penalty and borrower phone number, each one builds on real data instead of re-typing it.</p>
+        <div class="road">
+          <div class="road-card">
+            <div class="road-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M8 7h8M8 11h6"/></svg></div><span class="pill pill-next">Coming next</span></div>
+            <h3>Accounting</h3>
+            <p class="road-sub">The loan book becomes the books.</p>
+            <ul>
+              <li>Chart of accounts — cash, mobile money wallets, bank, loans receivable, interest &amp; fee income, penalties, expenses</li>
+              <li>Automatic double-entry journals from every disbursement, repayment, fee and penalty</li>
+              <li>Daily cash book &amp; mobile money reconciliation per collector and branch</li>
+              <li>Income &amp; expenses by branch — rent, transport, stipends, donor-funded costs</li>
+              <li>Trial balance and profit &amp; loss for the board and partners</li>
+            </ul>
+          </div>
+          <div class="road-card">
+            <div class="road-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></div><span class="pill pill-next">Coming next</span></div>
+            <h3>Billables</h3>
+            <p class="road-sub">Everything SLFPP charges, beyond loans.</p>
+            <ul>
+              <li>Membership dues and one-off registration fees with receipts</li>
+              <li>Training and program fees, including installment plans</li>
+              <li>Invoices and member statements in LRD</li>
+              <li>Partner / donor contributions tracked against the programs they fund</li>
+              <li>Posts straight into Accounting</li>
+            </ul>
+          </div>
+          <div class="road-card feature">
+            <div class="road-top"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4"/><path d="M9 7h6M9 10.5h4"/></svg></div><span class="pill pill-next">Coming next</span></div>
+            <h3>Messages to clients’ phones</h3>
+            <p class="road-sub">WhatsApp &amp; SMS reminders and collections, sent by the system.</p>
+            <ul>
+              <li>Automatic reminders before each due date — e.g. 3 days before and on the morning it is due</li>
+              <li>Overdue follow-ups with the amount and penalty, escalating to the field officer</li>
+              <li>Instant payment confirmation with receipt number after every repayment</li>
+              <li>Approval and disbursement notices to the borrower</li>
+              <li>Bulk messages by branch or community — meeting days, office closures</li>
+              <li>Each borrower’s preferred channel, delivery status and full message history on their profile</li>
+            </ul>
+            <div class="phone">
+              <div class="phone-h">SLFPP · WhatsApp <span>sample message</span></div>
+              <div class="bubble">Hello Mary, this is SLFPP. Your loan payment for <b>LN-1042</b> (installment 3) is due <b>today</b>. Pay at the Red Light Office or by mobile money. Thank you.</div>
+              <div class="bubble out">SLFPP: payment received for LN-1042 · receipt issued. 2 installments left. Thank you, Mary!</div>
+            </div>
+          </div>
         </div>
+        <div class="road-note"><strong>How it arrives:</strong> the loan management core goes live first. The roadmap items are then fitted to SLFPP’s accounts, fee types and message wording, and switched on as the next phase — scope and timing agreed with you on WhatsApp.</div>
+      </section>
+
+      <section class="sec" id="review">
+        <div class="sec-num">09 · How to review</div>
+        <h2>A ten-minute walk through the sample</h2>
+        <ol class="steps">
+          <li><div><strong>Sign in as Admin</strong> — look at the Dashboard, then open Branches, Loan Products and Settings &amp; Roles (try creating a custom role).</div></li>
+          <li><div><strong>Register a borrower</strong> — Incoming Registration, open the full profile section, then Verify until they are Eligible.</div></li>
+          <li><div><strong>Create a loan with a deposit</strong> — Loans → New loan; watch the installment calculate. It starts in Processing.</div></li>
+          <li><div><strong>Approve &amp; disburse</strong> — the schedule appears and the loan becomes Active.</div></li>
+          <li><div><strong>Collect</strong> — Due Payments buckets, then Repayments: pay two installments at once and print the receipt. Check the Dashboard percentages move.</div></li>
+          <li><div><strong>Switch role</strong> — sign in as Branch Manager and Field Officer to see what each can do; finish in Reports (print / CSV) and the “Coming next” previews.</div></li>
+        </ol>
+        <p style="margin-top:1rem">Sample data is illustrative only — not live SLFPP records. Uploads stay in your browser.</p>
       </section>
 
       <section class="sec" id="next">
         <div class="sec-num">10 · Next step</div>
         <h2>From sample to live system</h2>
-        <p>Open the interactive sample and sign in as Admin, then Branch Manager and Field Officer. Walk the lifecycle: Registration → Borrowers → Loans (create with a deposit) → Approve &amp; Disburse → Due Payments → Repayments → Dashboard → Reports. Try Branches, Loan Products and the “Coming next” Accounting preview. Sample data is illustrative only — not live SLFPP records.</p>
         <div class="engage">
           <div><div class="n">Stage 1</div><div class="l">Review the sample</div><p>Walk every module under all three roles.</p></div>
           <div><div class="n">Stage 2</div><div class="l">Free live demo</div><p>Payeconnect walks your team through real workflows.</p></div>
-          <div><div class="n">Stage 3</div><div class="l">Fit to SLFPP</div><p>Branches, products, interest policy, staff accounts and reminder rules.</p></div>
-          <div><div class="n">Stage 4</div><div class="l">Go live &amp; train</div><p>Import existing borrowers and balances; train staff on the morning routine.</p></div>
+          <div><div class="n">Stage 3</div><div class="l">Fit &amp; go live</div><p>Branches, products, staff accounts; import existing borrowers and balances; train staff.</p></div>
+          <div><div class="n">Stage 4</div><div class="l">Phase 2</div><p>Accounting, billables and phone messaging to clients on the same data.</p></div>
         </div>
         <div class="final">
           <div>

@@ -732,6 +732,7 @@
       <div class="sb-label">Coming next</div>
       <button type="button" data-tab="future" data-future="accounting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M8 7h8M8 11h6"/></svg><span>Accounting</span><span class="soon">Soon</span></button>
       <button type="button" data-tab="future" data-future="billables"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l3-2 3 2 3-2 3 2 3-2 1 .7V2l-1 .7-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 8h8M8 12h8M8 16h4"/></svg><span>Billables</span><span class="soon">Soon</span></button>
+      <button type="button" data-tab="future" data-future="messaging"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4M9 7h6M9 10.5h4"/></svg><span>Client messaging</span><span class="soon">Soon</span></button>
     </nav>
     <div class="sb-foot">
       <div class="sb-card">
@@ -1175,13 +1176,13 @@
       <div class="page-intro">
         <div class="eyebrow-sm">Coming next · Phase 2</div>
         <h1 id="futureTitle">Accounting &amp; billables — built on the same loan book.</h1>
-        <p>Once the loan management core is live, SLFPP can switch on accounting and billables. Every disbursement, repayment, fee and penalty already recorded in this system becomes a journal entry — no re-typing into a separate ledger.</p>
+        <p id="futureLead">Once the loan management core is live, SLFPP can switch on accounting and billables. Every disbursement, repayment, fee and penalty already recorded in this system becomes a journal entry — no re-typing into a separate ledger.</p>
       </div>
       <div class="future-grid" id="futureGrid"></div>
       <div class="card" style="margin-top:1rem">
-        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg>Preview · cash book from today’s activity <span class="badge soon">Coming</span></h3>
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></svg><span id="futurePreviewTitle">Preview · cash book from today’s activity</span> <span class="badge soon">Coming</span></h3>
         <div class="tbl-scroll ghost-table"><table class="num" id="futureLedger"></table></div>
-        <div class="field-hint" style="margin-top:0.6rem">Preview only — generated from sample repayments. Not part of the current build.</div>
+        <div class="field-hint" style="margin-top:0.6rem">Preview only — generated from sample data. Not part of the current build.</div>
       </div>
     </section>
 
@@ -1189,10 +1190,10 @@
       <div class="card">
         <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>About this offering</h3>
         <p style="color:var(--muted);font-size:0.92rem;margin:0.4rem 0 0.8rem;line-height:1.55"><strong style="color:var(--heading)">Payeconnect</strong> builds practical systems for organizations that run on trust and daily discipline. For <strong style="color:var(--heading)">Society For Less Fortunate People Project (SLFPP)</strong>, that means one credible loan management system: branches, loan products, complete borrower profiles, loans with deposits and automatic schedules, approvals, due lists and flexible repayments with receipts.</p>
-        <p style="color:var(--muted);font-size:0.92rem;margin:0;line-height:1.55">This is a <strong style="color:var(--heading)">custom build for Lawrence and SLFPP staff</strong>, fitted to Liberian field work — communities, LRD amounts, mobile money, WhatsApp/SMS follow-up. Try every module as Admin, Branch Manager and Field Officer, then book a free demo.</p>
+        <p style="color:var(--muted);font-size:0.92rem;margin:0;line-height:1.55">This is a <strong style="color:var(--heading)">custom build for Lawrence and SLFPP staff</strong>, fitted to Liberian field work — communities, LRD amounts, mobile money, WhatsApp/SMS follow-up. Try every module as Admin, Branch Manager and Field Officer, then book a free demo. Next on the roadmap: <strong style="color:var(--heading)">accounting</strong>, <strong style="color:var(--heading)">billables</strong> and <strong style="color:var(--heading)">messages to clients’ phones</strong>.</p>
       </div>
       <div class="price-panel">
-        <div class="eyebrow-sm">What's included</div>
+        <div class="eyebrow-sm">Included now</div>
         <div class="amt">Full SLFPP loan management system<span>Custom build · Society For Less Fortunate People Project</span></div>
         <ul>
           <li>Multi-branch workspace with branch scoping</li>
@@ -1203,8 +1204,11 @@
           <li>Due today / 3 days / week / month views</li>
           <li>Flexible repayments, receipts, locked paid weeks</li>
           <li>Reminders, track record, reports, CSV &amp; print</li>
-          <li>Admin, Branch Manager &amp; Field Officer roles</li>
+          <li>Admin, Branch Manager, Field Officer &amp; custom roles</li>
+          <li>Member profiles &amp; Approve / Disburse queue</li>
         </ul>
+        <div class="eyebrow-sm" style="margin-top:0.9rem">Coming next · roadmap</div>
+        <div style="font-size:0.84rem;color:var(--muted);line-height:1.55;margin-top:0.3rem">Accounting · Billables · WhatsApp / SMS messages to clients’ phones — previewed under <em>Coming next</em>, not live yet.</div>
         <div style="margin-top:0.9rem;display:flex;flex-wrap:wrap;gap:0.45rem">
           <a class="btn btn-primary btn-sm" href="https://wa.me/231888916127?text=Hello%20Payeconnect%2C%20I%20reviewed%20the%20SLFPP%20Assistant%20sample%20and%20want%20to%20book%20a%20free%20demo" target="_blank" rel="noopener">Book free demo</a>
           <a class="btn btn-secondary btn-sm" href="proposal.html">Full proposal</a>
@@ -1214,7 +1218,7 @@
     <div class="card closing-card">
       <div>
         <h3>Built to run SLFPP’s loan book day to day</h3>
-        <p style="color:var(--muted);font-size:0.88rem;margin:0;line-height:1.65">Walk the full lifecycle: register a borrower → create a loan on a product with an initial deposit → approve it and watch the schedule appear → disburse → see it in Due Payments → record a multi-week repayment with a receipt → check the dashboard percentages move. Accounting and billables are next. WhatsApp <strong style="color:var(--heading)">+231 888 916 127</strong> to book a free demo.</p>
+        <p style="color:var(--muted);font-size:0.88rem;margin:0;line-height:1.65">Walk the full lifecycle: register a borrower → create a loan on a product with an initial deposit → approve it and watch the schedule appear → disburse → see it in Due Payments → record a multi-week repayment with a receipt → check the dashboard percentages move. Accounting, billables and messages to clients’ phones are next. WhatsApp <strong style="color:var(--heading)">+231 888 916 127</strong> to book a free demo.</p>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
         <a class="btn btn-secondary" href="proposal.html">Read the proposal</a>
@@ -2175,11 +2179,31 @@
         ['Membership & registration fees','Charge and track member dues and one-off registration fees with receipts.'],
         ['Training & program fees','Bill skills-training participants and group sessions, with instalment plans.'],
         ['Invoices & statements','Printable invoices and member statements in LRD, shared by WhatsApp.'],
-        ['Partner / donor billing','Track grants and partner contributions against the programs they fund.']]}
+        ['Partner / donor billing','Track grants and partner contributions against the programs they fund.']]},
+      messaging: { title:'Messages to clients’ phones — WhatsApp & SMS, sent by the system.', lead:'Today the Payment Reminders queue tells staff who to contact. Next, the system sends the messages itself — on each borrower’s preferred channel, straight from the live schedules — and keeps the delivery history on their profile.', cards:[
+        ['Automatic due-date reminders','WhatsApp or SMS 3 days before and on the morning each installment is due.'],
+        ['Overdue follow-ups','Amount and penalty included; escalates to the field officer if still unpaid.'],
+        ['Payment confirmations','Instant message with receipt number and remaining balance after every repayment.'],
+        ['Approval & disbursement notices','Borrowers hear the moment their loan is approved and paid out.'],
+        ['Bulk messages','By branch or community — meeting days, office closures, new programs.'],
+        ['Delivery status & history','Sent / delivered / failed per message, stored on the member profile.']]}
+    };
+    const FUTURE_LEAD = {
+      accounting:'Once the loan management core is live, SLFPP can switch on accounting and billables. Every disbursement, repayment, fee and penalty already recorded in this system becomes a journal entry — no re-typing into a separate ledger.',
+      billables:'Membership dues, registration and training fees, invoices and member statements — billed and receipted in the same system, and posted straight into accounting.'
     };
     function renderFuture() {
-      const f = FUTURE[futureMode] || FUTURE.accounting, other = futureMode === 'billables' ? FUTURE.accounting : FUTURE.billables;
+      const f = FUTURE[futureMode] || FUTURE.accounting, other = futureMode === 'accounting' ? FUTURE.billables : FUTURE.accounting;
       $('futureTitle').textContent = f.title;
+      $('futureLead').textContent = f.lead || FUTURE_LEAD[futureMode] || FUTURE_LEAD.accounting;
+      if (futureMode === 'messaging') {
+        $('futurePreviewTitle').textContent = 'Preview · messages the system would send today';
+        $('futureGrid').innerHTML = f.cards.map(([t, p]) => `<div class="future-card"><div class="t">${escapeHtml(t)}<span class="badge soon">Coming</span></div><p>${escapeHtml(p)}</p></div>`).join('');
+        const xs = unpaid().filter(x => x.d <= 3).slice(0, 6);
+        $('futureLedger').innerHTML = `<thead><tr><th>To</th><th>Channel</th><th>When</th><th>Message</th></tr></thead><tbody>${xs.map(x => { const first = escapeHtml(x.b.name.split(' ')[0]); const amt = fmtLRD(x.r.amount + (x.d < 0 ? x.pen : 0)); const msg = x.d < 0 ? `Hello ${first}, this is SLFPP. Your payment of ${amt} for ${x.L.id} (installment ${x.r.n}) was due ${fmtShort(x.r.due)}. Please pay today or call your field officer.` : x.d === 0 ? `Hello ${first}, this is SLFPP. Your payment of ${amt} for ${x.L.id} (installment ${x.r.n}) is due today. Thank you.` : `Hello ${first}, a reminder from SLFPP: ${amt} for ${x.L.id} is due ${fmtShort(x.r.due)}.`; return `<tr><td>${escapeHtml(x.b.name)}<div class="muted small">${escapeHtml(x.b.phone)}</div></td><td>${escapeHtml(x.b.channel === 'Phone call' ? 'SMS' : x.b.channel)}</td><td>${x.d < 0 ? 'Overdue follow-up' : x.d === 0 ? 'Today 8:00' : 'Due-date reminder'}</td><td style="white-space:normal;min-width:260px">${msg}</td></tr>`; }).join('') || '<tr><td colspan="4" class="muted">No reminders due in this scope.</td></tr>'}</tbody>`;
+        return;
+      }
+      $('futurePreviewTitle').textContent = 'Preview · cash book from today’s activity';
       $('futureGrid').innerHTML = f.cards.concat(other.cards.slice(0, 2)).map(([t, p], i) => `<div class="future-card"><div class="t">${escapeHtml(t)}<span class="badge soon">${i < f.cards.length ? 'Coming' : 'Also planned'}</span></div><p>${escapeHtml(p)}</p></div>`).join('');
       const ps = sLoans().flatMap(L => L.payments.map(p => ({ p, L }))).filter(x => inOct(x.p.date)).slice(0, 6);
       $('futureLedger').innerHTML = `<thead><tr><th>Date</th><th>Ref</th><th>Account</th><th class="r">Debit</th><th class="r">Credit</th></tr></thead><tbody>${ps.flatMap(({ p, L }) => { const rows = L.schedule.filter(r => p.nums.includes(r.n)); const pr = sum(rows, r => r.principal), it = sum(rows, r => r.interest), fe = sum(rows, r => r.fee) + p.penalty; return [[fmtShort(p.date), p.receipt, (p.method === 'Cash' ? 'Cash on hand' : p.method) + ' · ' + borrowerOf(L).name, fmtLRD(p.amount + p.penalty), ''], ['', '', 'Loans receivable · ' + L.id, '', fmtLRD(pr)], ['', '', 'Interest income', '', fmtLRD(it)], ['', '', 'Fee & penalty income', '', fmtLRD(fe)]]; }).map(r => `<tr>${r.map((v, i) => `<td${i > 2 ? ' class="r"' : ''}>${escapeHtml(v)}</td>`).join('')}</tr>`).join('')}</tbody>`;
